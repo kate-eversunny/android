@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<dimen name="poster_height">290dp</dimen>
+	<dimen name="card_height">658dp</dimen>
+	<dimen name="card_marginTop">236dp</dimen>
+	<dimen name="card_corner_radius">30dp</dimen>
+	<dimen name="elevation_default">2dp</dimen>
+	<dimen name="elevation_underline">8dp</dimen>
+
+	<dimen name="margin_8">8dp</dimen>
+	<dimen name="margin_10">10dp</dimen>
+	<dimen name="margin_15">15dp</dimen>
+	<dimen name="margin_20">20dp</dimen>
+	<dimen name="margin_30">30dp</dimen>
+	<dimen name="margin_35">35dp</dimen>
+	<dimen name="margin_40">40dp</dimen>
+	<dimen name="margin_60">60dp</dimen>
+	<dimen name="margin_75">75dp</dimen>
+
+	<dimen name="text_size_7">7sp</dimen>
+	<dimen name="text_size_10">10sp</dimen>
+	<dimen name="text_size_12">12sp</dimen>
+	<dimen name="text_size_14">14sp</dimen>
+	<dimen name="text_size_16">16sp</dimen>
+	<dimen name="text_size_18">18sp</dimen>
+	<dimen name="text_size_20">20sp</dimen>
+
+	<dimen name="bottom_bar_height">50dp</dimen>
+	<dimen name="bottom_bar_underline_width">197dp</dimen>
+	<dimen name="bottom_bar_underline_height">2dp</dimen>
+
+	<dimen name="actor_portrait_width">150dp</dimen>
+	<dimen name="actor_portrait_height">196dp</dimen>
+	<dimen name="actor_portrait_distance">10dp</dimen>
+	<dimen name="actor_name_margin_top">12dp</dimen>
+	<dimen name="actor_name_text_size">12sp</dimen>
+
+	<dimen name="item_genre_vertical_padding">3dp</dimen>
+	<dimen name="item_genre_horizontal_padding">10dp</dimen>
+	<dimen name="item_genre_end_margin">5dp</dimen>
+
+	<dimen name="item_movie_height">240dp</dimen>
+	<dimen name="item_movie_height_land">216dp</dimen>
+	<dimen name="item_movie_width_land">150dp</dimen>
+	<dimen name="item_movie_components_margin">5dp</dimen>
+	<dimen name="item_movie_age_margin">2dp</dimen>
+
+	<dimen name="movie_list_padding_bottom">40dp</dimen>
+
+
+
+</resources>

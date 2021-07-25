@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity(), MoviesAdapter.OnItemClickListener {
 
     private var moviesModel: MoviesModel = MoviesModel(MoviesDataSourceImpl())
     private lateinit var movieRecycler: RecyclerView
+    private lateinit var toast: Toast
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity(), MoviesAdapter.OnItemClickListener {
             moviesModel.setMovies(savedInstanceState.getParcelableArrayList<MovieDto>("savedMoviesList") as ArrayList<MovieDto>)
         }
         setRecyclers()
+        toast = Toast.makeText(this, "", Toast.LENGTH_SHORT)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -82,10 +84,14 @@ class MainActivity : AppCompatActivity(), MoviesAdapter.OnItemClickListener {
     }
 
     private fun showToast(message: String?) {
-        when {
-            message.isNullOrEmpty() -> { showToast(getString(R.string.main_empty_message)) }
-            else -> Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        var text: String? = message
+        if (message.isNullOrEmpty()) {
+            text = getString(R.string.main_empty_message)
         }
+
+        toast.cancel()
+        toast.setText(text)
+        toast.show()
     }
 }
 

@@ -9,25 +9,13 @@ import coil.load
 import coil.size.Scale
 import coil.transform.RoundedCornersTransformation
 
-class MoviesViewHolder(view: View, private val listener: MoviesAdapter.OnItemClickListener) : RecyclerView.ViewHolder(view),
-View.OnClickListener{
+class MoviesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
 	private val moviePoster: ImageView = view.findViewById(R.id.ivItemPoster)
 	private val movieName: TextView = view.findViewById(R.id.tvItemMovieName)
 	private val movieAnnotation: TextView = view.findViewById(R.id.tvItemMovieAnnotation)
 	private val movieRating: RatingBar = view.findViewById(R.id.rbItemRating)
 	private val movieAgeRestriction: TextView = view.findViewById(R.id.tvItemAgeText)
-
-	init{
-		view.setOnClickListener(this)
-	}
-
-	override fun onClick(view: View?) {
-		val position: Int = this.layoutPosition
-		if (position != RecyclerView.NO_POSITION) {
-			listener.onItemClick(position)
-		}
-	}
 
 	fun bind(movie: MovieDto) {
 		moviePoster.load(movie.imageUrl) {

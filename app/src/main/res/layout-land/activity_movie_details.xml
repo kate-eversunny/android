@@ -43,12 +43,12 @@
             app:layout_constraintStart_toStartOf="@id/cvMovieDetailsCard"
             app:layout_constraintTop_toTopOf="@id/cvMovieDetailsCard"
             android:layout_marginStart="@dimen/margin_20"
-            android:layout_marginTop="@dimen/margin_32"
+            android:layout_marginTop="@dimen/margin_30"
             android:elevation="@dimen/elevation_default"
             android:gravity="center"
             android:text="@string/genre_action_movie"
             android:textColor="@color/black"
-            android:textSize="10sp"
+            android:textSize="@dimen/text_size_10"
             android:textStyle="normal"
             android:background="@drawable/rectangle_rounded_border"
             android:paddingStart="9dp"
@@ -61,11 +61,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="@dimen/margin_35"
             android:elevation="@dimen/elevation_default"
             android:gravity="center_vertical"
             android:text="@string/launch_date_wrath_of_man"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_size_12"
             android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@id/tvMovieDetailsGenre"
             app:layout_constraintTop_toTopOf="@id/cvMovieDetailsCard" />
@@ -76,12 +76,12 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="@id/cvMovieDetailsCard"
             app:layout_constraintTop_toTopOf="@id/cvMovieDetailsCard"
-            android:layout_marginStart="@dimen/margin_22"
-            android:layout_marginTop="63dp"
+            android:layout_marginStart="@dimen/margin_20"
+            android:layout_marginTop="@dimen/margin_60"
             android:elevation="@dimen/elevation_default"
             android:text="@string/movie_name_wrath_of_man"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="@dimen/text_size_20"
             android:textStyle="bold" />
 
         <TextView
@@ -90,12 +90,12 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="@id/cvMovieDetailsCard"
             app:layout_constraintTop_toTopOf="@id/cvMovieDetailsCard"
-            android:layout_marginTop="42dp"
+            android:layout_marginTop="@dimen/margin_40"
             android:layout_marginEnd="@dimen/margin_20"
             android:elevation="@dimen/elevation_default"
             android:text="@string/age_restriction_18"
             android:textColor="@color/black"
-            android:textSize="14sp"
+            android:textSize="@dimen/text_size_14"
             android:gravity="center"
             android:background="@drawable/circle_border"/>
 
@@ -107,7 +107,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="@id/tvMovieDetailsName"
             app:layout_constraintTop_toBottomOf="@id/tvMovieDetailsName"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/margin_8"
             android:elevation="@dimen/elevation_default"
             android:isIndicator="true"
             android:numStars="5"
@@ -119,14 +119,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_20"
             android:layout_marginTop="@dimen/margin_20"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="@dimen/margin_8"
             app:layout_constraintStart_toStartOf="@id/cvMovieDetailsCard"
             app:layout_constraintTop_toBottomOf="@id/rbMovieDetailsRating"
             app:layout_constraintEnd_toEndOf="@id/cvMovieDetailsCard"
             android:elevation="@dimen/elevation_default"
             android:text="@string/description_wrath_of_man"
             android:textColor="@color/black"
-            android:textSize="14sp"
+            android:textSize="@dimen/text_size_14"
             android:textStyle="normal" />
 
         <TextView
@@ -136,11 +136,11 @@
             app:layout_constraintStart_toStartOf="@id/cvMovieDetailsCard"
             app:layout_constraintTop_toBottomOf="@id/tvMovieDetailsAnnotation"
             android:elevation="@dimen/elevation_default"
-            android:layout_marginStart="@dimen/margin_22"
-            android:layout_marginTop="35dp"
+            android:layout_marginStart="@dimen/margin_20"
+            android:layout_marginTop="@dimen/margin_35"
             android:text="@string/title_actors"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="@dimen/text_size_16"
             android:textStyle="bold" />
 
         <HorizontalScrollView
@@ -231,7 +231,7 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="@dimen/bottom_bar_height"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:menu="@menu/bottom_nav_menu"
@@ -239,8 +239,8 @@
             app:itemBackground="@color/transparent" />
 
         <ImageView
-            android:layout_width="197dp"
-            android:layout_height="2dp"
+            android:layout_width="@dimen/bottom_bar_underline_width"
+            android:layout_height="@dimen/bottom_bar_underline_height"
             android:contentDescription="@string/underline"
             android:elevation="@dimen/elevation_underline"
             app:layout_constraintBottom_toBottomOf="@id/bottomNavigationView"

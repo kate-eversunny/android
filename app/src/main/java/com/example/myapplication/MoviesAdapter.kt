@@ -12,11 +12,14 @@ class MoviesAdapter(
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
 		val inflater : LayoutInflater = LayoutInflater.from(parent.context)
-		return MoviesViewHolder(inflater.inflate(R.layout.item_movie, parent, false), listener)
+		return MoviesViewHolder(inflater.inflate(R.layout.item_movie, parent, false))
 	}
 
 	override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
 		holder.bind(getItem(position))
+		holder.itemView.setOnClickListener {
+			listener.onItemClick(position)
+		}
 	}
 
 	private fun getItem(position: Int): MovieDto = movies[position]

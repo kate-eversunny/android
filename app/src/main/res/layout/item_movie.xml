@@ -9,11 +9,11 @@
 	<com.google.android.material.imageview.ShapeableImageView
 		android:id="@+id/ivItemPoster"
 		android:layout_width="match_parent"
-		android:layout_height="240dp"
+		android:layout_height="@dimen/item_movie_height"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="parent"
-		tools:srcCompat="@mipmap/poster_wrath"
+		tools:srcCompat="@mipmap/poster"
 		android:contentDescription="@string/poster_name_wrath_of_man" />
 
 	<TextView
@@ -22,12 +22,12 @@
 		android:layout_height="wrap_content"
 		app:layout_constraintStart_toStartOf="@id/ivItemPoster"
 		app:layout_constraintTop_toBottomOf="@id/ivItemPoster"
-		android:layout_marginStart="3dp"
-		android:layout_marginTop="10dp"
+		android:layout_marginStart="@dimen/item_movie_components_margin"
+		android:layout_marginTop="@dimen/margin_10"
 		android:elevation="@dimen/elevation_default"
 		tools:text="@string/movie_name_wrath_of_man"
 		android:textColor="@color/black"
-		android:textSize="14sp"
+		android:textSize="@dimen/text_size_14"
 		android:textStyle="bold" />
 
 	<TextView
@@ -37,13 +37,13 @@
 		app:layout_constraintStart_toStartOf="@id/tvItemMovieName"
 		app:layout_constraintTop_toBottomOf="@id/tvItemMovieName"
 		app:layout_constraintBottom_toTopOf="@id/rbItemRating"
-		android:layout_marginStart="3dp"
-		android:layout_marginTop="8dp"
-		android:layout_marginBottom="15dp"
+		android:layout_marginStart="@dimen/item_movie_components_margin"
+		android:layout_marginTop="@dimen/margin_10"
+		android:layout_marginBottom="@dimen/margin_15"
 		android:elevation="@dimen/elevation_default"
 		tools:text="Эйч — загадочный и холодный на вид джентльмен, но внутри него пылает жажда справедливости. Преследуя..."
 		android:textColor="@color/black"
-		android:textSize="12sp"
+		android:textSize="@dimen/text_size_12"
 		android:textStyle="normal" />
 
 	<RatingBar
@@ -53,8 +53,8 @@
 		android:layout_height="wrap_content"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintBottom_toBottomOf="parent"
-		android:layout_marginBottom = "5dp"
-		android:layout_marginStart="3dp"
+		android:layout_marginBottom="@dimen/item_movie_components_margin"
+		android:layout_marginStart="@dimen/item_movie_components_margin"
 		android:elevation="@dimen/elevation_default"
 		android:isIndicator="true"
 		android:numStars="5"
@@ -66,12 +66,12 @@
 		android:layout_height="wrap_content"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintBottom_toBottomOf="parent"
-		android:layout_marginBottom="2dp"
-		android:layout_marginEnd="2dp"
+		android:layout_marginBottom="@dimen/item_movie_age_margin"
+		android:layout_marginEnd="@dimen/item_movie_age_margin"
 		android:elevation="@dimen/elevation_default"
 		tools:text="@string/age_restriction_18"
 		android:textColor="@color/black"
-		android:textSize="7sp"
+		android:textSize="@dimen/text_size_7"
 		android:background="@drawable/circle_border_small"
 		android:gravity="center"/>
 

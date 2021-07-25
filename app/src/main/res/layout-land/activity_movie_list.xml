@@ -11,8 +11,8 @@
 		android:layout_height="wrap_content"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintTop_toTopOf="parent"
-		android:layout_marginEnd="21dp"
-		android:layout_marginTop="20dp"
+		android:layout_marginEnd="@dimen/margin_20"
+		android:layout_marginTop="@dimen/margin_20"
 		android:elevation="@dimen/elevation_default"
 		android:contentDescription="@string/magnifying_glass"
 		app:srcCompat="@drawable/ic_magnifying_glass" />
@@ -24,11 +24,11 @@
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="parent"
 		android:layout_marginStart="@dimen/margin_20"
-		android:layout_marginTop="40dp"
+		android:layout_marginTop="@dimen/margin_40"
 		android:elevation="@dimen/elevation_default"
 		android:text="@string/popular_now"
 		android:textColor="@color/black"
-		android:textSize="16sp"
+		android:textSize="@dimen/text_size_16"
 		android:textStyle="bold" />
 
 	<androidx.recyclerview.widget.RecyclerView
@@ -38,8 +38,8 @@
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toBottomOf="@id/tvPopularTitle"
-		android:layout_marginStart="20dp"
-		android:layout_marginTop="12dp"
+		android:layout_marginStart="@dimen/margin_20"
+		android:layout_marginTop="@dimen/margin_10"
 		tools:listitem="@layout/item_genre"
 		android:gravity="center"
 		android:clipToPadding="false" />
@@ -52,9 +52,9 @@
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toBottomOf="@id/rvMovieListGenres"
-		android:layout_marginEnd="10dp"
-		android:layout_marginStart="10dp"
-		android:layout_marginTop="18dp"
+		android:layout_marginEnd="@dimen/margin_10"
+		android:layout_marginStart="@dimen/margin_10"
+		android:layout_marginTop="@dimen/margin_20"
 		android:layout_marginBottom="@dimen/bottom_bar_height">
 
 	<androidx.recyclerview.widget.RecyclerView
@@ -63,7 +63,7 @@
 		android:layout_height="0dp"
 		android:clipToPadding="false"
 		android:gravity="center_horizontal"
-		android:paddingBottom="42dp"
+		android:paddingBottom="@dimen/movie_list_padding_bottom"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
@@ -83,8 +83,8 @@
 		app:itemBackground="@color/transparent" />
 
 	<ImageView
-		android:layout_width="197dp"
-		android:layout_height="2dp"
+		android:layout_width="@dimen/bottom_bar_underline_width"
+		android:layout_height="@dimen/bottom_bar_underline_height"
 		android:contentDescription="@string/underline"
 		android:elevation="@dimen/elevation_underline"
 		app:layout_constraintBottom_toBottomOf="@id/movieListBottomNavigationView"

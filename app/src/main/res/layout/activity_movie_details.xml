@@ -84,6 +84,7 @@
             android:textSize="@dimen/text_size_20"
             android:textStyle="bold" />
 
+
         <TextView
             android:id="@+id/tvMovieDetailsAgeRestriction"
             android:layout_width="wrap_content"
@@ -98,7 +99,6 @@
             android:textSize="@dimen/text_size_14"
             android:gravity="center"
             android:background="@drawable/circle_border"/>
-
 
         <RatingBar
             android:id="@+id/rbMovieDetailsRating"

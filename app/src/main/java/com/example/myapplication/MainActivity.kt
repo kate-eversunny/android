@@ -1,97 +1,94 @@
 package com.example.myapplication
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.fragment.app.FragmentManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity(), MoviesAdapter.OnItemClickListener {
 
-    private var moviesModel: MoviesModel = MoviesModel(MoviesDataSourceImpl())
-    private lateinit var movieRecycler: RecyclerView
-    private lateinit var toast: Toast
+	private var movieList = MoviesListFragment.newInstance()
+	private lateinit var bottomNav: BottomNavigationView
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_movie_list)
-        if (savedInstanceState != null) {
-            moviesModel.setMovies(savedInstanceState.getParcelableArrayList<MovieDto>("savedMoviesList") as ArrayList<MovieDto>)
-        }
-        setRecyclers()
-        toast = Toast.makeText(this, "", Toast.LENGTH_SHORT)
-    }
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		setContentView(R.layout.activity_main)
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState.putParcelableArrayList("savedMoviesList", moviesModel.getMovies())
-        super.onSaveInstanceState(outState)
-    }
+		if (savedInstanceState == null) {
+			supportFragmentManager
+				.beginTransaction()
+				.add(R.id.root_layout, movieList, R.string.tag_movie_list.toString())
+				.commit()
+		}
+		setBottomNavigation()
+	}
 
-    private fun setRecyclers() {
-        setMoviesRecycler()
-        setGenreRecycler()
-    }
+	private fun setBottomNavigation() {
+//		val bottomNav: BottomNavigationView = findViewById(R.id.mainBottomNavigationView)
+		bottomNav = findViewById(R.id.mainBottomNavigationView)
+		bottomNav.setOnNavigationItemSelectedListener(createBottomNavigationListener())
+	}
 
-    private fun setMoviesRecycler() {
-        movieRecycler = findViewById(R.id.rvMovieList)
-        val movies: List<MovieDto> = moviesModel.getMovies()
-        movieRecycler.adapter = MoviesAdapter(movies, this)
-        movieRecycler.layoutManager = GridLayoutManager(this, 2)
+	private fun createBottomNavigationListener(): BottomNavigationView.OnNavigationItemSelectedListener {
+		return BottomNavigationView.OnNavigationItemSelectedListener { menuItem ->
+			when (menuItem.itemId) {
+				R.id.home -> {
+					clearBackStack()
+					return@OnNavigationItemSelectedListener true
+				}
+				R.id.profile -> {
+					launchProfileFragment()
+					return@OnNavigationItemSelectedListener true
+				}
+			}
+			false
+		}
+	}
 
-        setItemDecoration()
-        setSwipeRefresh(movieRecycler.adapter as MoviesAdapter)
-    }
+	private fun clearBackStack() {
+		for (i in 0 until supportFragmentManager.backStackEntryCount) {
+			supportFragmentManager.popBackStack()
+		}
+	}
 
-    private fun setItemDecoration() {
-        val itemDecoration = MovieItemDecoration(20, 0,20, 50)
-        movieRecycler.addItemDecoration(itemDecoration)
-    }
+	private fun launchProfileFragment() {
+		val tag = R.string.tag_profile.toString()
+		checkBackStack(tag)
 
-    private fun setSwipeRefresh(adapter: MoviesAdapter) {
-        val pullToRefresh: SwipeRefreshLayout = findViewById(R.id.swipeContainerMovieList)
-        pullToRefresh.setOnRefreshListener {
-            adapter.updateData(moviesModel.updateMovies())
-            pullToRefresh.isRefreshing = false
-        }
-    }
+		supportFragmentManager
+			.beginTransaction()
+			.replace(R.id.root_layout, ProfileFragment.newInstance(), tag)
+			.addToBackStack(tag)
+			.commit()
+	}
 
-    private fun setGenreRecycler() {
-        val genreRecycler: RecyclerView = findViewById(R.id.rvMovieListGenres)
-        genreRecycler.adapter = GenresAdapter(getGenres())
-        genreRecycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-    }
+	private fun checkBackStack(tag: String) {
+		if (supportFragmentManager.findFragmentByTag(tag) != null) {
+			supportFragmentManager.popBackStack(tag, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+		}
+	}
 
-    private fun getGenres(): List<String> = this.resources.getStringArray(R.array.genres).toList()
+	override fun onItemClick(movie: MovieDto) {
+		val detailsFragment = MovieDetailsFragment.newInstance(movie)
+		val tag = R.string.tag_movie_details.toString()
 
-    override fun onItemClick(position: Int) {
-        showToast(getToastMessage(position))
-    }
+		supportFragmentManager
+			.beginTransaction()
+			.replace(R.id.root_layout, detailsFragment, tag)
+			.addToBackStack(tag)
+			.commit()
+	}
 
-    private fun getMovieAt(position: Int): MovieDto? {
-        val movies: List<MovieDto> = moviesModel.getMovies()
-        return when {
-            movies.isEmpty() -> null
-            position >= movies.size -> null
-            else -> movies[position]
-        }
-    }
-
-    private fun getToastMessage(position: Int) = getMovieAt(position)?.title?.let {
-        getString(R.string.main_click_message, it)
-    }
-
-    private fun showToast(message: String?) {
-        var text: String? = message
-        if (message.isNullOrEmpty()) {
-            text = getString(R.string.main_empty_message)
-        }
-
-        toast.cancel()
-        toast.setText(text)
-        toast.show()
-    }
+	override fun onBackPressed() {
+		when (bottomNav.selectedItemId) {
+			R.id.home -> {
+				super.onBackPressed()
+			}
+			else -> {
+				bottomNav.selectedItemId = R.id.home
+			}
+		}
+	}
 }
 

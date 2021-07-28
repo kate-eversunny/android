@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity(), MoviesAdapter.OnItemClickListener {
 	}
 
 	private fun setBottomNavigation() {
-//		val bottomNav: BottomNavigationView = findViewById(R.id.mainBottomNavigationView)
 		bottomNav = findViewById(R.id.mainBottomNavigationView)
 		bottomNav.setOnNavigationItemSelectedListener(createBottomNavigationListener())
 	}

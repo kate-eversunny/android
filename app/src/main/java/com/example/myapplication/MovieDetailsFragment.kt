@@ -8,10 +8,12 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
 
-class MovieDetailsFragment: Fragment() {
+class MovieDetailsFragment : Fragment() {
 
 	private lateinit var moviePoster: ImageView
 	private lateinit var movieGenre: TextView
@@ -42,10 +44,11 @@ class MovieDetailsFragment: Fragment() {
 		val movie = requireArguments().getParcelable<MovieDto>("movie")
 		setViewAttributes(movie)
 
+		setActorsRecycler(view, movie as MovieDto)
 		return view
 	}
 
-	fun initViewAttributes(view: View) {
+	private fun initViewAttributes(view: View) {
 		moviePoster = view.findViewById(R.id.ivMovieDetailsPoster)
 		movieGenre = view.findViewById(R.id.tvMovieDetailsGenre)
 		movieReleaseDate = view.findViewById(R.id.tvMovieDetailsReleaseDate)
@@ -55,7 +58,7 @@ class MovieDetailsFragment: Fragment() {
 		movieAgeRestriction = view.findViewById(R.id.tvMovieDetailsAgeRestriction)
 	}
 
-	fun setViewAttributes(movie: MovieDto?) {
+	private fun setViewAttributes(movie: MovieDto?) {
 		moviePoster.load(movie?.imageUrl) {
 			transformations(RoundedCornersTransformation(30f))
 		}
@@ -67,5 +70,12 @@ class MovieDetailsFragment: Fragment() {
 		movieRating.rating = movie?.rateScore!!.toFloat()
 	}
 
-
+	private fun setActorsRecycler(view: View, movie: MovieDto) {
+		val actorRecycler: RecyclerView = view.findViewById(R.id.rvActors)
+		val actors: Array<ActorDto> = movie.actors
+		actorRecycler.adapter = ActorsAdapter(actors)
+		actorRecycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+		val itemDecoration = MovieItemDecoration(10, 0,10, 50)
+		actorRecycler.addItemDecoration(itemDecoration)
+	}
 }

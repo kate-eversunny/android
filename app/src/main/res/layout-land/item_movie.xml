@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/moviesListItemRoot"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content">
@@ -10,69 +10,69 @@
 		android:id="@+id/ivItemPoster"
 		android:layout_width="@dimen/item_movie_width_land"
 		android:layout_height="@dimen/item_movie_height_land"
+		android:contentDescription="@string/poster_name_wrath_of_man"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="parent"
-		tools:srcCompat="@mipmap/poster"
-		android:contentDescription="@string/poster_name_wrath_of_man" />
+		tools:srcCompat="@mipmap/poster" />
 
 	<TextView
 		android:id="@+id/tvItemMovieName"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		app:layout_constraintStart_toStartOf="@id/ivItemPoster"
-		app:layout_constraintTop_toBottomOf="@id/ivItemPoster"
 		android:layout_marginStart="@dimen/item_movie_components_margin"
 		android:layout_marginTop="@dimen/margin_10"
 		android:elevation="@dimen/elevation_default"
-		tools:text="@string/movie_name_wrath_of_man"
 		android:textColor="@color/black"
 		android:textSize="@dimen/text_size_14"
-		android:textStyle="bold" />
+		android:textStyle="bold"
+		app:layout_constraintStart_toStartOf="@id/ivItemPoster"
+		app:layout_constraintTop_toBottomOf="@id/ivItemPoster"
+		tools:text="@string/movie_name_wrath_of_man" />
 
 	<TextView
 		android:id="@+id/tvItemMovieAnnotation"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		app:layout_constraintStart_toStartOf="@id/tvItemMovieName"
-		app:layout_constraintTop_toBottomOf="@id/tvItemMovieName"
-		app:layout_constraintBottom_toTopOf="@id/rbItemRating"
 		android:layout_marginStart="@dimen/item_movie_components_margin"
 		android:layout_marginTop="@dimen/margin_8"
 		android:layout_marginBottom="@dimen/margin_15"
 		android:elevation="@dimen/elevation_default"
-		tools:text="Эйч — загадочный и холодный на вид джентльмен, но внутри него пылает жажда справедливости. Преследуя..."
 		android:textColor="@color/black"
 		android:textSize="@dimen/text_size_12"
-		android:textStyle="normal" />
+		android:textStyle="normal"
+		app:layout_constraintBottom_toTopOf="@id/rbItemRating"
+		app:layout_constraintStart_toStartOf="@id/tvItemMovieName"
+		app:layout_constraintTop_toBottomOf="@id/tvItemMovieName"
+		tools:text="Эйч — загадочный и холодный на вид джентльмен, но внутри него пылает жажда справедливости. Преследуя..." />
 
 	<RatingBar
 		android:id="@+id/rbItemRating"
 		style="@style/customRatingBarSmall"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintBottom_toBottomOf="parent"
-		android:layout_marginBottom = "@dimen/item_movie_components_margin"
 		android:layout_marginStart="@dimen/item_movie_components_margin"
+		android:layout_marginBottom="@dimen/item_movie_components_margin"
 		android:elevation="@dimen/elevation_default"
 		android:isIndicator="true"
 		android:numStars="5"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
 		tools:rating="3" />
 
 	<TextView
 		android:id="@+id/tvItemAgeText"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintBottom_toBottomOf="parent"
-		android:layout_marginBottom="@dimen/item_movie_age_margin"
 		android:layout_marginEnd="@dimen/item_movie_age_margin"
+		android:layout_marginBottom="@dimen/item_movie_age_margin"
+		android:background="@drawable/circle_border_small"
 		android:elevation="@dimen/elevation_default"
-		tools:text="@string/age_restriction_18"
+		android:gravity="center"
 		android:textColor="@color/black"
 		android:textSize="@dimen/text_size_7"
-		android:background="@drawable/circle_border_small"
-		android:gravity="center"/>
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		tools:text="@string/age_restriction_18" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

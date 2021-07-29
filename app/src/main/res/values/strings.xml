@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+	<string name="app_name">My Application</string>
 	<string name="poster_name_wrath_of_man">wrath_of_man_poster</string>
 	<string name="genre_action_movie">боевики</string>
 	<string name="launch_date_wrath_of_man">22.04.2021</string>
@@ -22,6 +22,7 @@
 	<string name="magnifying_glass">magnifying_glass</string>
 	<string name="main_click_message">Название: %1$s</string>
 	<string name="main_empty_message">Тут должен был быть текст</string>
+	<string name="poster_name">poster_name</string>
 
 	<string-array name="genres">
 		<item>боевики</item>
@@ -44,5 +45,18 @@
 		<item>фантастика</item>
 		<item>фэнтези</item>
 	</string-array>
+
+	<string name="tag_movie_list">movieList</string>
+	<string name="tag_movie_details">movieDetails</string>
+	<string name="tag_profile">profile</string>
+
+	<string name="profile_name">Екатерина</string>
+	<string name="profile_email">17optimistic@gmail.com</string>
+	<string name="profile_interests">Интересы</string>
+	<string name="profile_private_data">Личные данные</string>
+	<string name="profile_settings">Настройки</string>
+	<string name="profile_app">Приложение</string>
+	<string name="profile_button_exit">Выйти</string>
+
 
 </resources>

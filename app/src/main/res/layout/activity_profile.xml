@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<ScrollView
+		android:id="@+id/svProfileRoot"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:scrollbars="none"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent">
+
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+
+			<TextView
+				android:id="@+id/profileName"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="@dimen/margin_20"
+				android:layout_marginTop="@dimen/margin_60"
+				android:elevation="@dimen/elevation_default"
+				android:text="@string/profile_name"
+				android:textColor="@color/black"
+				android:textSize="@dimen/text_size_20"
+				android:textStyle="bold"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent" />
+
+			<TextView
+				android:id="@+id/profileEmail"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="@dimen/margin_20"
+				android:layout_marginTop="2dp"
+				android:elevation="@dimen/elevation_default"
+				android:text="@string/profile_email"
+				android:textColor="@color/black"
+				android:textSize="@dimen/text_size_14"
+				android:textStyle="normal"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/profileName" />
+
+			<TextView
+				android:id="@+id/profileInterests"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="@dimen/margin_20"
+				android:layout_marginTop="@dimen/margin_75"
+				android:elevation="@dimen/elevation_default"
+				android:text="@string/profile_interests"
+				android:textColor="@color/black"
+				android:textSize="@dimen/text_size_14"
+				android:textStyle="bold"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/profileName" />
+
+			<TextView
+				android:id="@+id/profilePersonalData"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="@dimen/margin_20"
+				android:layout_marginTop="@dimen/margin_70"
+				android:elevation="@dimen/elevation_default"
+				android:text="@string/profile_private_data"
+				android:textColor="@color/black"
+				android:textSize="@dimen/text_size_16"
+				android:textStyle="bold"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/profileInterests" />
+
+			<TextView
+				android:id="@+id/profileSettings"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="@dimen/margin_20"
+				android:layout_marginTop="490dp"
+				android:elevation="@dimen/elevation_default"
+				android:text="@string/profile_settings"
+				android:textColor="@color/black"
+				android:textSize="@dimen/text_size_16"
+				android:textStyle="bold"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent" />
+
+			<TextView
+				android:id="@+id/profileApp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="@dimen/margin_20"
+				android:layout_marginTop="710dp"
+				android:elevation="@dimen/elevation_default"
+				android:text="@string/profile_app"
+				android:textColor="@color/black"
+				android:textSize="@dimen/text_size_16"
+				android:textStyle="bold"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent" />
+
+			<Button
+				android:layout_width="320dp"
+				android:layout_height="60dp"
+				android:layout_marginStart="@dimen/margin_20"
+				android:layout_marginTop="830dp"
+				android:layout_marginEnd="@dimen/margin_20"
+				android:layout_marginBottom="100dp"
+				android:backgroundTint="@color/light_gray"
+				android:gravity="center"
+				android:stateListAnimator="@null"
+				android:text="@string/profile_button_exit"
+				android:textAllCaps="false"
+				android:textColor="@color/black"
+				android:textSize="@dimen/text_size_16"
+				android:textStyle="bold"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent" />
+
+
+		</androidx.constraintlayout.widget.ConstraintLayout>
+	</ScrollView>
+
+	<include
+		android:id="@+id/profileBottomNavigationView"
+		layout="@layout/bottom_navigation" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,17 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
-class MoviesListFragment: Fragment() {
+class MoviesListFragment : Fragment() {
 
 	private var moviesModel: MoviesModel = MoviesModel(MoviesDataSourceImpl())
 	private lateinit var movieRecycler: RecyclerView
 	private lateinit var listener: MoviesAdapter.OnItemClickListener
-
-	companion object {
-		fun newInstance(): MoviesListFragment {
-			return MoviesListFragment()
-		}
-	}
 
 	override fun onAttach(context: Context) {
 		super.onAttach(context)
@@ -36,14 +30,21 @@ class MoviesListFragment: Fragment() {
 		val view: View = inflater.inflate(R.layout.activity_movie_list, container, false)
 
 		if (savedInstanceState != null) {
-			moviesModel.setMovies(savedInstanceState.getParcelableArrayList<MovieDto>("savedMoviesList") as ArrayList<MovieDto>)
+			moviesModel.setMovies(
+				savedInstanceState.getParcelableArrayList<MovieDto>(
+					resources.getString(R.string.tag_saved_movie_list)
+				) as ArrayList<MovieDto>
+			)
 		}
 		setRecyclers(view)
 		return view
 	}
 
 	override fun onSaveInstanceState(outState: Bundle) {
-		outState.putParcelableArrayList("savedMoviesList", moviesModel.getMovies())
+		outState.putParcelableArrayList(
+			resources.getString(R.string.tag_saved_movie_list),
+			moviesModel.getMovies()
+		)
 		super.onSaveInstanceState(outState)
 	}
 
@@ -63,7 +64,12 @@ class MoviesListFragment: Fragment() {
 	}
 
 	private fun setItemDecoration() {
-		val itemDecoration = MovieItemDecoration(20, 0,20, 50)
+		val itemDecoration = MovieItemDecoration(
+			resources.getDimensionPixelSize(R.dimen.item_movie_left_offset),
+			resources.getDimensionPixelSize(R.dimen.item_movie_top_offset),
+			resources.getDimensionPixelSize(R.dimen.item_movie_right_offset),
+			resources.getDimensionPixelSize(R.dimen.item_movie_bottom_offset)
+		)
 		movieRecycler.addItemDecoration(itemDecoration)
 	}
 
@@ -78,9 +84,15 @@ class MoviesListFragment: Fragment() {
 	private fun setGenreRecycler(view: View) {
 		val genreRecycler: RecyclerView = view.findViewById(R.id.rvMovieListGenres)
 		genreRecycler.adapter = GenresAdapter(getGenres())
-		genreRecycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+		genreRecycler.layoutManager =
+			LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 	}
 
 	private fun getGenres(): List<String> = this.resources.getStringArray(R.array.genres).toList()
 
+	companion object {
+		fun newInstance(): MoviesListFragment {
+			return MoviesListFragment()
+		}
+	}
 }

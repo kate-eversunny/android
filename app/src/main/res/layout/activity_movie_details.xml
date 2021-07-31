@@ -78,11 +78,12 @@
 
 			<TextView
 				android:id="@+id/tvMovieDetailsName"
-				android:layout_width="wrap_content"
+				android:layout_width="@dimen/movie_details_name_width"
 				android:layout_height="wrap_content"
 				android:layout_marginStart="@dimen/margin_20"
 				android:layout_marginTop="@dimen/margin_60"
 				android:elevation="@dimen/elevation_default"
+				android:singleLine="false"
 				android:text="@string/movie_name_wrath_of_man"
 				android:textColor="@color/black"
 				android:textSize="@dimen/text_size_20"

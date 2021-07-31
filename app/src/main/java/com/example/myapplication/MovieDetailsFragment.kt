@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,16 +24,6 @@ class MovieDetailsFragment : Fragment() {
 	private lateinit var movieRating: RatingBar
 	private lateinit var movieAgeRestriction: TextView
 
-	companion object {
-		fun newInstance(movie: MovieDto): MovieDetailsFragment {
-			val args = Bundle()
-			val fragment = MovieDetailsFragment()
-			args.putParcelable("movie", movie)
-			fragment.arguments = args
-			return fragment
-		}
-	}
-
 	override fun onCreateView(
 		inflater: LayoutInflater,
 		container: ViewGroup?,
@@ -41,7 +32,8 @@ class MovieDetailsFragment : Fragment() {
 		val view: View = inflater.inflate(R.layout.activity_movie_details, container, false)
 		initViewAttributes(view)
 
-		val movie = requireArguments().getParcelable<MovieDto>("movie")
+		val movie =
+			requireArguments().getParcelable<MovieDto>(resources.getString(R.string.tag_movie))
 		setViewAttributes(movie)
 
 		setActorsRecycler(view, movie as MovieDto)
@@ -74,8 +66,24 @@ class MovieDetailsFragment : Fragment() {
 		val actorRecycler: RecyclerView = view.findViewById(R.id.rvActors)
 		val actors: Array<ActorDto> = movie.actors
 		actorRecycler.adapter = ActorsAdapter(actors)
-		actorRecycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-		val itemDecoration = MovieItemDecoration(10, 0,10, 50)
+		actorRecycler.layoutManager =
+			LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+		val itemDecoration = MovieItemDecoration(
+			resources.getDimensionPixelSize(R.dimen.item_actor_left_offset),
+			resources.getDimensionPixelSize(R.dimen.item_actor_top_offset),
+			resources.getDimensionPixelSize(R.dimen.item_actor_right_offset),
+			resources.getDimensionPixelSize(R.dimen.item_actor_bottom_offset)
+		)
 		actorRecycler.addItemDecoration(itemDecoration)
+	}
+
+	companion object {
+		fun newInstance(movie: MovieDto, resources: Resources): MovieDetailsFragment {
+			val args = Bundle()
+			val fragment = MovieDetailsFragment()
+			args.putParcelable(resources.getString(R.string.tag_movie), movie)
+			fragment.arguments = args
+			return fragment
+		}
 	}
 }

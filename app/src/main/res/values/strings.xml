@@ -43,6 +43,8 @@
 		<item>фэнтези</item>
 	</string-array>
 
+	<string name="tag_movie">movie</string>
+	<string name="tag_saved_movie_list">savedMovieList</string>
 	<string name="tag_movie_list">movieList</string>
 	<string name="tag_movie_details">movieDetails</string>
 	<string name="tag_profile">profile</string>

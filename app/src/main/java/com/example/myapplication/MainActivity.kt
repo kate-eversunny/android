@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity(), MoviesAdapter.OnItemClickListener {
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()
-                .add(R.id.root_layout, movieList, R.string.tag_movie_list.toString())
+                .add(R.id.root_layout, movieList, resources.getString(R.string.tag_movie_list))
                 .commit()
         }
         setBottomNavigation()
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity(), MoviesAdapter.OnItemClickListener {
     }
 
     private fun launchProfileFragment() {
-        val tag = R.string.tag_profile.toString()
+        val tag = resources.getString(R.string.tag_profile)
         checkBackStack(tag)
 
         supportFragmentManager
@@ -69,8 +69,8 @@ class MainActivity : AppCompatActivity(), MoviesAdapter.OnItemClickListener {
     }
 
     override fun onItemClick(movie: MovieDto) {
-        val detailsFragment = MovieDetailsFragment.newInstance(movie)
-        val tag = R.string.tag_movie_details.toString()
+        val detailsFragment = MovieDetailsFragment.newInstance(movie, resources)
+        val tag = resources.getString(R.string.tag_movie_details)
 
         supportFragmentManager
             .beginTransaction()

@@ -6,6 +6,7 @@
 	<dimen name="card_height_land">600dp</dimen>
 	<dimen name="card_marginTop">236dp</dimen>
 	<dimen name="card_corner_radius">30dp</dimen>
+	<dimen name="movie_details_name_width">250dp</dimen>
 	<dimen name="elevation_default">2dp</dimen>
 
 	<dimen name="margin_8">8dp</dimen>
@@ -37,6 +38,11 @@
 	<dimen name="actor_name_margin_top">12dp</dimen>
 	<dimen name="actor_name_text_size">12sp</dimen>
 
+	<dimen name="item_actor_left_offset">5dp</dimen>
+	<dimen name="item_actor_top_offset">0dp</dimen>
+	<dimen name="item_actor_right_offset">5dp</dimen>
+	<dimen name="item_actor_bottom_offset">50dp</dimen>
+
 	<dimen name="item_genre_vertical_padding">3dp</dimen>
 	<dimen name="item_genre_horizontal_padding">10dp</dimen>
 	<dimen name="item_genre_end_margin">5dp</dimen>
@@ -46,6 +52,11 @@
 	<dimen name="item_movie_width_land">150dp</dimen>
 	<dimen name="item_movie_components_margin">5dp</dimen>
 	<dimen name="item_movie_age_margin">2dp</dimen>
+
+	<dimen name="item_movie_left_offset">10dp</dimen>
+	<dimen name="item_movie_top_offset">0dp</dimen>
+	<dimen name="item_movie_right_offset">10dp</dimen>
+	<dimen name="item_movie_bottom_offset">50dp</dimen>
 
 	<dimen name="movie_list_padding_bottom">40dp</dimen>
 

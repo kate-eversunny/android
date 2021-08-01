@@ -4,7 +4,8 @@
 	<dimen name="poster_height_land">1000dp</dimen>
 	<dimen name="card_height">750dp</dimen>
 	<dimen name="card_height_land">600dp</dimen>
-	<dimen name="card_marginTop">236dp</dimen>
+	<dimen name="card_margin_top">240dp</dimen>
+	<dimen name="card_margin_top_land">300dp</dimen>
 	<dimen name="card_corner_radius">30dp</dimen>
 	<dimen name="movie_details_name_width">250dp</dimen>
 	<dimen name="elevation_default">2dp</dimen>

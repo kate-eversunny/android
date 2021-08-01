@@ -5,7 +5,7 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/svMovieDetails"
 	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
+	android:layout_height="match_parent"
 	android:background="@color/background_gray"
 	android:scrollbars="none">
 
@@ -15,7 +15,7 @@
 
 		<com.google.android.material.imageview.ShapeableImageView
 			android:id="@+id/ivMovieDetailsPoster"
-			android:layout_width="0dp"
+			android:layout_width="match_parent"
 			android:layout_height="@dimen/poster_height_land"
 			android:contentDescription="@string/poster_name"
 			app:layout_constraintEnd_toEndOf="parent"
@@ -26,13 +26,14 @@
 		<androidx.cardview.widget.CardView
 			android:id="@+id/cvMovieDetailsCard"
 			android:layout_width="match_parent"
-			android:layout_height="@dimen/card_height_land"
-			android:layout_marginTop="@dimen/card_marginTop"
+			android:layout_height="0dp"
+			android:layout_marginTop="@dimen/card_margin_top_land"
 			app:cardBackgroundColor="@color/light_gray"
 			app:cardCornerRadius="@dimen/card_corner_radius"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent" />
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintBottom_toBottomOf="parent"/>
 
 		<TextView
 			android:id="@+id/tvMovieDetailsGenre"

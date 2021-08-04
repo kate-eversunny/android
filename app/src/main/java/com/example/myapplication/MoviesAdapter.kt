@@ -18,11 +18,11 @@ class MoviesAdapter(
 	override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
 		holder.bind(getItem(position))
 		holder.itemView.setOnClickListener {
-			listener.onItemClick(position)
+			listener.onItemClick(getItem(position))
 		}
 	}
 
-	private fun getItem(position: Int): MovieDto = movies[position]
+	fun getItem(position: Int): MovieDto = movies[position]
 
 	override fun getItemCount(): Int = movies.size
 
@@ -34,7 +34,7 @@ class MoviesAdapter(
 	}
 
 	interface OnItemClickListener {
-		fun onItemClick(position: Int)
+		fun onItemClick(movie: MovieDto)
 	}
 }
 

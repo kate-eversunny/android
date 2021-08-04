@@ -1,251 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/svMovieDetailsRoot"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:scrollbars="none"
-    android:background="@color/background_gray" >
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/svMovieDetails"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/background_gray"
+	android:scrollbars="none">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/ivMovieDetailsPoster"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/poster_height"
-            android:scaleType="centerCrop"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@mipmap/poster"
-            android:contentDescription="@string/poster_name_wrath_of_man"
-            app:shapeAppearanceOverlay="@style/roundedImage" />
+		<com.google.android.material.imageview.ShapeableImageView
+			android:id="@+id/ivMovieDetailsPoster"
+			android:layout_width="match_parent"
+			android:layout_height="@dimen/poster_height_land"
+			android:contentDescription="@string/poster_name"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:srcCompat="@mipmap/poster" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvMovieDetailsCard"
-            android:layout_width="match_parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_height="@dimen/card_height"
-            android:layout_marginTop="@dimen/card_marginTop"
-            app:cardBackgroundColor="@color/light_gray"
-            app:cardCornerRadius="@dimen/card_corner_radius" />
+		<androidx.cardview.widget.CardView
+			android:id="@+id/cvMovieDetailsCard"
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_marginTop="@dimen/card_margin_top_land"
+			app:cardBackgroundColor="@color/light_gray"
+			app:cardCornerRadius="@dimen/card_corner_radius"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <TextView
-            android:id="@+id/tvMovieDetailsGenre"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            app:layout_constraintStart_toStartOf="@id/cvMovieDetailsCard"
-            app:layout_constraintTop_toTopOf="@id/cvMovieDetailsCard"
-            android:layout_marginStart="@dimen/margin_20"
-            android:layout_marginTop="@dimen/margin_30"
-            android:elevation="@dimen/elevation_default"
-            android:gravity="center"
-            android:text="@string/genre_action_movie"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_10"
-            android:textStyle="normal"
-            android:background="@drawable/rectangle_rounded_border"
-            android:paddingStart="9dp"
-            android:paddingEnd="9dp"
-            android:paddingTop="4dp"
-            android:paddingBottom="3dp"/>
+		<TextView
+			android:id="@+id/tvMovieDetailsGenre"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_marginStart="@dimen/margin_20"
+			android:layout_marginTop="@dimen/margin_30"
+			android:background="@drawable/rectangle_rounded_border"
+			android:elevation="@dimen/elevation_default"
+			android:gravity="center"
+			android:paddingStart="@dimen/item_genre_horizontal_padding"
+			android:paddingTop="@dimen/item_genre_vertical_padding"
+			android:paddingEnd="@dimen/item_genre_horizontal_padding"
+			android:paddingBottom="@dimen/item_genre_vertical_padding"
+			android:textColor="@color/black"
+			android:textSize="@dimen/text_size_10"
+			android:textStyle="normal"
+			app:layout_constraintStart_toStartOf="@id/cvMovieDetailsCard"
+			app:layout_constraintTop_toTopOf="@id/cvMovieDetailsCard"
+			tools:text="@string/genre_action_movie" />
 
-        <TextView
-            android:id="@+id/tvMovieDetailsReleaseDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="@dimen/margin_35"
-            android:elevation="@dimen/elevation_default"
-            android:gravity="center_vertical"
-            android:text="@string/launch_date_wrath_of_man"
-            android:textSize="@dimen/text_size_12"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toEndOf="@id/tvMovieDetailsGenre"
-            app:layout_constraintTop_toTopOf="@id/cvMovieDetailsCard" />
+		<TextView
+			android:id="@+id/tvMovieDetailsReleaseDate"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="14dp"
+			android:layout_marginTop="32dp"
+			android:elevation="@dimen/elevation_default"
+			android:gravity="center_vertical"
+			android:textColor="@color/black"
+			android:textSize="@dimen/text_size_12"
+			app:layout_constraintStart_toEndOf="@id/tvMovieDetailsGenre"
+			app:layout_constraintTop_toTopOf="@id/cvMovieDetailsCard"
+			tools:text="@string/launch_date_wrath_of_man" />
 
-        <TextView
-            android:id="@+id/tvMovieDetailsName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/cvMovieDetailsCard"
-            app:layout_constraintTop_toTopOf="@id/cvMovieDetailsCard"
-            android:layout_marginStart="@dimen/margin_20"
-            android:layout_marginTop="@dimen/margin_60"
-            android:elevation="@dimen/elevation_default"
-            android:text="@string/movie_name_wrath_of_man"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_20"
-            android:textStyle="bold" />
+		<TextView
+			android:id="@+id/tvMovieDetailsName"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/margin_20"
+			android:layout_marginTop="@dimen/margin_60"
+			android:elevation="@dimen/elevation_default"
+			android:textColor="@color/black"
+			android:textSize="@dimen/text_size_20"
+			android:textStyle="bold"
+			app:layout_constraintStart_toStartOf="@id/cvMovieDetailsCard"
+			app:layout_constraintTop_toTopOf="@id/cvMovieDetailsCard"
+			tools:text="@string/movie_name_wrath_of_man" />
 
-        <TextView
-            android:id="@+id/tvMovieDetailsAgeRestriction"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@id/cvMovieDetailsCard"
-            app:layout_constraintTop_toTopOf="@id/cvMovieDetailsCard"
-            android:layout_marginTop="@dimen/margin_40"
-            android:layout_marginEnd="@dimen/margin_20"
-            android:elevation="@dimen/elevation_default"
-            android:text="@string/age_restriction_18"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_14"
-            android:gravity="center"
-            android:background="@drawable/circle_border"/>
-
-
-        <RatingBar
-            android:id="@+id/rbMovieDetailsRating"
-            style="@style/customRatingBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/tvMovieDetailsName"
-            app:layout_constraintTop_toBottomOf="@id/tvMovieDetailsName"
-            android:layout_marginTop="@dimen/margin_8"
-            android:elevation="@dimen/elevation_default"
-            android:isIndicator="true"
-            android:numStars="5"
-            android:rating="4" />
-
-        <TextView
-            android:id="@+id/tvMovieDetailsAnnotation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_20"
-            android:layout_marginTop="@dimen/margin_20"
-            android:layout_marginEnd="@dimen/margin_8"
-            app:layout_constraintStart_toStartOf="@id/cvMovieDetailsCard"
-            app:layout_constraintTop_toBottomOf="@id/rbMovieDetailsRating"
-            app:layout_constraintEnd_toEndOf="@id/cvMovieDetailsCard"
-            android:elevation="@dimen/elevation_default"
-            android:text="@string/description_wrath_of_man"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_14"
-            android:textStyle="normal" />
-
-        <TextView
-            android:id="@+id/tvMovieDetailsActorsTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/cvMovieDetailsCard"
-            app:layout_constraintTop_toBottomOf="@id/tvMovieDetailsAnnotation"
-            android:elevation="@dimen/elevation_default"
-            android:layout_marginStart="@dimen/margin_20"
-            android:layout_marginTop="@dimen/margin_35"
-            android:text="@string/title_actors"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_16"
-            android:textStyle="bold" />
-
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/cvMovieDetailsCard"
-            app:layout_constraintTop_toBottomOf="@id/tvMovieDetailsActorsTitle"
-            android:layout_marginStart="@dimen/margin_20"
-            android:layout_marginTop="16dp"
-            android:elevation="@dimen/elevation_default"
-            android:scrollbars="none">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/ivMovieDetailsFirstActorPortrait"
-                    android:layout_width="@dimen/actor_portrait_width"
-                    android:layout_height="@dimen/actor_portrait_height"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@mipmap/actor_jason_statham"
-                    android:contentDescription="@string/actor_portrait_jason_statham" />
-
-                <TextView
-                    android:id="@+id/tvMovieDetailsFirstActorName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/actor_name_margin_top"
-                    android:text="@string/actor_name_jason_statham"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/actor_name_text_size"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@id/ivMovieDetailsFirstActorPortrait"
-                    app:layout_constraintTop_toBottomOf="@id/ivMovieDetailsFirstActorPortrait" />
-
-                <ImageView
-                    android:id="@+id/ivMovieDetailsSecondActorPortrait"
-                    android:layout_width="@dimen/actor_portrait_width"
-                    android:layout_height="@dimen/actor_portrait_height"
-                    android:layout_marginStart="@dimen/actor_portrait_distance"
-                    app:layout_constraintStart_toEndOf="@id/ivMovieDetailsFirstActorPortrait"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@mipmap/actor_holt_mccallany"
-                    android:contentDescription="@string/actor_portrait_holt_mccallany" />
-
-                <TextView
-                    android:id="@+id/tvMovieDetailsSecondActorName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/actor_name_margin_top"
-                    android:text="@string/actor_name_holt_mccallany"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/actor_name_text_size"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@id/ivMovieDetailsSecondActorPortrait"
-                    app:layout_constraintTop_toBottomOf="@id/ivMovieDetailsSecondActorPortrait" />
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/ivMovieDetailsThirdActorPortrait"
-                    android:layout_width="@dimen/actor_portrait_width"
-                    android:layout_height="@dimen/actor_portrait_height"
-                    android:layout_marginStart="@dimen/actor_portrait_distance"
-                    app:layout_constraintStart_toEndOf="@id/ivMovieDetailsSecondActorPortrait"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@mipmap/actor_josh_hartnett"
-                    app:shapeAppearanceOverlay="@style/roundedActorImage"
-                    android:background="@color/cardview_light_background"/>
-
-                <TextView
-                    android:id="@+id/tvMovieDetailsThirdActorName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/actor_name_margin_top"
-                    android:text="@string/actor_name_josh_hartnett"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/actor_name_text_size"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@id/ivMovieDetailsThirdActorPortrait"
-                    app:layout_constraintTop_toBottomOf="@id/ivMovieDetailsThirdActorPortrait" />
+		<TextView
+			android:id="@+id/tvMovieDetailsAgeRestriction"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="@dimen/margin_40"
+			android:layout_marginEnd="@dimen/margin_20"
+			android:background="@drawable/circle_border"
+			android:elevation="@dimen/elevation_default"
+			android:gravity="center"
+			android:textColor="@color/black"
+			android:textSize="@dimen/text_size_14"
+			app:layout_constraintEnd_toEndOf="@id/cvMovieDetailsCard"
+			app:layout_constraintTop_toTopOf="@id/cvMovieDetailsCard"
+			tools:text="@string/age_restriction_18" />
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </HorizontalScrollView>
+		<RatingBar
+			android:id="@+id/rbMovieDetailsRating"
+			style="@style/customRatingBar"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="@dimen/margin_8"
+			android:elevation="@dimen/elevation_default"
+			android:isIndicator="true"
+			android:numStars="5"
+			app:layout_constraintStart_toStartOf="@id/tvMovieDetailsName"
+			app:layout_constraintTop_toBottomOf="@id/tvMovieDetailsName"
+			tools:rating="4" />
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigationView"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/bottom_bar_height"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:menu="@menu/bottom_nav_menu"
-            app:itemIconTint="@color/black"
-            app:itemBackground="@color/transparent" />
+		<TextView
+			android:id="@+id/tvMovieDetailsAnnotation"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/margin_20"
+			android:layout_marginTop="@dimen/margin_20"
+			android:layout_marginEnd="@dimen/margin_8"
+			android:elevation="@dimen/elevation_default"
+			android:textColor="@color/black"
+			android:textSize="@dimen/text_size_14"
+			android:textStyle="normal"
+			app:layout_constraintEnd_toEndOf="@id/cvMovieDetailsCard"
+			app:layout_constraintStart_toStartOf="@id/cvMovieDetailsCard"
+			app:layout_constraintTop_toBottomOf="@id/rbMovieDetailsRating"
+			tools:text="@string/description_wrath_of_man" />
 
-        <ImageView
-            android:layout_width="@dimen/bottom_bar_underline_width"
-            android:layout_height="@dimen/bottom_bar_underline_height"
-            android:contentDescription="@string/underline"
-            android:elevation="@dimen/elevation_underline"
-            app:layout_constraintBottom_toBottomOf="@id/bottomNavigationView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/line" />
+		<TextView
+			android:id="@+id/tvMovieDetailsActorsTitle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/margin_20"
+			android:layout_marginTop="@dimen/margin_35"
+			android:elevation="@dimen/elevation_default"
+			android:text="@string/title_actors"
+			android:textColor="@color/black"
+			android:textSize="@dimen/text_size_16"
+			android:textStyle="bold"
+			app:layout_constraintStart_toStartOf="@id/cvMovieDetailsCard"
+			app:layout_constraintTop_toBottomOf="@id/tvMovieDetailsAnnotation" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/rvActors"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			android:clipToPadding="false"
+			android:elevation="@dimen/elevation_default"
+			android:gravity="center_horizontal"
+			android:paddingStart="@dimen/margin_20"
+			android:paddingEnd="@dimen/margin_20"
+			android:scrollbars="none"
+			app:layout_constraintStart_toStartOf="@id/cvMovieDetailsCard"
+			app:layout_constraintTop_toBottomOf="@id/tvMovieDetailsActorsTitle"
+			tools:listitem="@layout/item_actor" />
+
+		<com.google.android.material.bottomnavigation.BottomNavigationView
+			android:id="@+id/bottomNavigationView"
+			android:layout_width="match_parent"
+			android:layout_height="@dimen/bottom_bar_height"
+			app:itemBackground="@color/transparent"
+			app:itemIconTint="@color/black"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:menu="@menu/bottom_nav_menu" />
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

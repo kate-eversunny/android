@@ -44,6 +44,19 @@
 		app:layout_constraintTop_toBottomOf="@id/tvPopularTitle"
 		tools:listitem="@layout/item_genre" />
 
+	<TextView
+		android:id="@+id/tvMovieListNoConnection"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_marginStart="@dimen/margin_20"
+		android:layout_marginTop="@dimen/margin_10"
+		android:gravity="center"
+		android:text="@string/no_connection"
+		android:visibility="invisible"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/tvPopularTitle" />
+
 	<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 		android:id="@+id/swipeContainerMovieList"
 		android:layout_width="match_parent"

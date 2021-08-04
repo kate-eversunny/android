@@ -5,7 +5,7 @@ class MoviesModel(
 ) {
 	private var movies: ArrayList<MovieDto> = arrayListOf()
 
-	fun loadMovies(): ArrayList<MovieDto> {
+	private fun loadMovies(): ArrayList<MovieDto> {
 		movies = moviesDataSource.loadMovies()
 		return movies
 	}

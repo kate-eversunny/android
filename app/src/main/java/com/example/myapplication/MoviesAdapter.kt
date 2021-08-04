@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import java.lang.AssertionError
 
 class MoviesAdapter(
 	private var movies: List<MovieDto>,
@@ -22,11 +23,14 @@ class MoviesAdapter(
 		}
 	}
 
-	fun getItem(position: Int): MovieDto = movies[position]
+	private fun getItem(position: Int): MovieDto = movies[position]
 
 	override fun getItemCount(): Int = movies.size
 
 	fun updateData(newList: List<MovieDto> ) {
+		if (newList.isEmpty()) {
+			throw AssertionError("No data loaded")
+		}
 		val callback = MoviesCallback(movies , newList)
 		val diff = DiffUtil.calculateDiff(callback)
 		movies = newList

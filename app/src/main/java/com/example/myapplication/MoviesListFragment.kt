@@ -2,14 +2,21 @@ package com.example.myapplication
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.findViewTreeLifecycleOwner
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import kotlinx.coroutines.*
+import java.lang.AssertionError
 
 class MoviesListFragment : Fragment() {
 
@@ -55,12 +62,27 @@ class MoviesListFragment : Fragment() {
 
 	private fun setMoviesRecycler(view: View) {
 		movieRecycler = view.findViewById(R.id.rvMovieList)
-		val movies: List<MovieDto> = moviesModel.getMovies()
-		movieRecycler.adapter = MoviesAdapter(movies, listener)
-		movieRecycler.layoutManager = GridLayoutManager(context, 2)
-
-		setItemDecoration()
-		setSwipeRefresh(view, movieRecycler.adapter as MoviesAdapter)
+		Thread.sleep(UPDATE_DELAY)
+		val handler = CoroutineExceptionHandler { _, exception ->
+			Log.d(
+				resources.getString(R.string.tag_coroutineException),
+				"Caught $exception"
+			)
+			view.findViewById<TextView>(R.id.tvMovieListNoConnection).isVisible = true
+		}
+		val scope = CoroutineScope(Dispatchers.Main)
+		runBlocking {
+			scope.launch(handler) {
+				val movies = moviesModel.getMovies()
+				movieRecycler.adapter = MoviesAdapter(movies, listener)
+				movieRecycler.layoutManager = GridLayoutManager(context, 2)
+				setItemDecoration()
+				setSwipeRefresh(view, movieRecycler.adapter as MoviesAdapter)
+				if (movies.isEmpty()) {
+					throw AssertionError("No data loaded")
+				}
+			}
+		}
 	}
 
 	private fun setItemDecoration() {
@@ -76,8 +98,21 @@ class MoviesListFragment : Fragment() {
 	private fun setSwipeRefresh(view: View, adapter: MoviesAdapter) {
 		val pullToRefresh: SwipeRefreshLayout = view.findViewById(R.id.swipeContainerMovieList)
 		pullToRefresh.setOnRefreshListener {
-			adapter.updateData(moviesModel.updateMovies())
-			pullToRefresh.isRefreshing = false
+			Thread.sleep(UPDATE_DELAY)
+			val handler = CoroutineExceptionHandler { _, exception ->
+				Log.d(
+					resources.getString(R.string.tag_coroutineException),
+					"Caught $exception"
+				)
+				pullToRefresh.isRefreshing = false
+			}
+			view.findViewTreeLifecycleOwner()?.lifecycleScope?.launch(handler) {
+				withContext(Dispatchers.Main) {
+					adapter.updateData(moviesModel.updateMovies())
+					pullToRefresh.isRefreshing = false
+					view.findViewById<TextView>(R.id.tvMovieListNoConnection).isVisible = false
+				}
+			}
 		}
 	}
 
@@ -96,3 +131,5 @@ class MoviesListFragment : Fragment() {
 		}
 	}
 }
+
+const val UPDATE_DELAY: Long = 1000

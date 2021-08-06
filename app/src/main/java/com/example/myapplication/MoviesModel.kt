@@ -1,5 +1,7 @@
 package com.example.myapplication
 
+import java.lang.AssertionError
+
 class MoviesModel(
 	private val moviesDataSource: MoviesDataSource
 ) {
@@ -11,6 +13,7 @@ class MoviesModel(
 	}
 
 	fun getMovies(): ArrayList<MovieDto> {
+		Thread.sleep(UPDATE_DELAY)
 		if (movies.isEmpty()) {
 			loadMovies()
 		}
@@ -22,7 +25,14 @@ class MoviesModel(
 	}
 
 	fun updateMovies(): ArrayList<MovieDto> {
-		movies = moviesDataSource.updateMovies()
+		Thread.sleep(UPDATE_DELAY)
+		val newList = moviesDataSource.updateMovies()
+		if (newList.isEmpty()) {
+			throw AssertionError("No data loaded")
+		}
+		movies = newList
 		return movies
 	}
 }
+
+const val UPDATE_DELAY: Long = 1000

@@ -9,8 +9,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.findViewTreeLifecycleOwner
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -62,7 +60,6 @@ class MoviesListFragment : Fragment() {
 
 	private fun setMoviesRecycler(view: View) {
 		movieRecycler = view.findViewById(R.id.rvMovieList)
-		Thread.sleep(UPDATE_DELAY)
 		val handler = CoroutineExceptionHandler { _, exception ->
 			Log.d(
 				resources.getString(R.string.tag_coroutineException),
@@ -98,7 +95,7 @@ class MoviesListFragment : Fragment() {
 	private fun setSwipeRefresh(view: View, adapter: MoviesAdapter) {
 		val pullToRefresh: SwipeRefreshLayout = view.findViewById(R.id.swipeContainerMovieList)
 		pullToRefresh.setOnRefreshListener {
-			Thread.sleep(UPDATE_DELAY)
+			var movies: List<MovieDto> = listOf()
 			val handler = CoroutineExceptionHandler { _, exception ->
 				Log.d(
 					resources.getString(R.string.tag_coroutineException),
@@ -106,12 +103,14 @@ class MoviesListFragment : Fragment() {
 				)
 				pullToRefresh.isRefreshing = false
 			}
-			view.findViewTreeLifecycleOwner()?.lifecycleScope?.launch(handler) {
-				withContext(Dispatchers.Main) {
-					adapter.updateData(moviesModel.updateMovies())
-					pullToRefresh.isRefreshing = false
-					view.findViewById<TextView>(R.id.tvMovieListNoConnection).isVisible = false
-				}
+			val scope = CoroutineScope(Dispatchers.Default)
+			runBlocking {
+				scope.launch(handler) {
+					movies = moviesModel.updateMovies()
+				}.join()
+				adapter.updateData(movies)
+				pullToRefresh.isRefreshing = false
+				view.findViewById<TextView>(R.id.tvMovieListNoConnection).isVisible = movies.isEmpty()
 			}
 		}
 	}
@@ -131,5 +130,3 @@ class MoviesListFragment : Fragment() {
 		}
 	}
 }
-
-const val UPDATE_DELAY: Long = 1000

@@ -48,6 +48,7 @@
 	<string name="tag_movie_list">movieList</string>
 	<string name="tag_movie_details">movieDetails</string>
 	<string name="tag_profile">profile</string>
+	<string name="tag_coroutineException">coroutineException</string>
 
 	<string name="profile_name">Екатерина</string>
 	<string name="profile_email">17optimistic@gmail.com</string>
@@ -56,6 +57,8 @@
 	<string name="profile_settings">Настройки</string>
 	<string name="profile_app">Приложение</string>
 	<string name="profile_button_exit">Выйти</string>
+
+	<string name="no_connection">Отсутствует подключение к интернету</string>
 
 
 </resources>

@@ -22,7 +22,7 @@ class MoviesAdapter(
 		}
 	}
 
-	fun getItem(position: Int): MovieDto = movies[position]
+	private fun getItem(position: Int): MovieDto = movies[position]
 
 	override fun getItemCount(): Int = movies.size
 

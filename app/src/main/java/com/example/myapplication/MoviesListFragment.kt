@@ -68,16 +68,14 @@ class MoviesListFragment : Fragment() {
 			view.findViewById<TextView>(R.id.tvMovieListNoConnection).isVisible = true
 		}
 		val scope = CoroutineScope(Dispatchers.Main)
-		runBlocking {
-			scope.launch(handler) {
-				val movies = moviesModel.getMovies()
-				movieRecycler.adapter = MoviesAdapter(movies, listener)
-				movieRecycler.layoutManager = GridLayoutManager(context, 2)
-				setItemDecoration()
-				setSwipeRefresh(view, movieRecycler.adapter as MoviesAdapter)
-				if (movies.isEmpty()) {
-					throw AssertionError("No data loaded")
-				}
+		scope.launch(handler) {
+			val movies = moviesModel.getMovies()
+			movieRecycler.adapter = MoviesAdapter(movies, listener)
+			movieRecycler.layoutManager = GridLayoutManager(context, 2)
+			setItemDecoration()
+			setSwipeRefresh(view, movieRecycler.adapter as MoviesAdapter)
+			if (movies.isEmpty()) {
+				throw AssertionError("No data loaded")
 			}
 		}
 	}
@@ -103,14 +101,15 @@ class MoviesListFragment : Fragment() {
 				)
 				pullToRefresh.isRefreshing = false
 			}
-			val scope = CoroutineScope(Dispatchers.Default)
-			runBlocking {
-				scope.launch(handler) {
+			val scope = CoroutineScope(Dispatchers.Main)
+			scope.launch(handler) {
+				launch(Dispatchers.Default) {
 					movies = moviesModel.updateMovies()
 				}.join()
 				adapter.updateData(movies)
 				pullToRefresh.isRefreshing = false
-				view.findViewById<TextView>(R.id.tvMovieListNoConnection).isVisible = movies.isEmpty()
+				view.findViewById<TextView>(R.id.tvMovieListNoConnection).isVisible =
+					movies.isEmpty()
 			}
 		}
 	}

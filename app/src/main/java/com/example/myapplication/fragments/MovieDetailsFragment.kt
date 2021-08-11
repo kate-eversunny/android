@@ -1,6 +1,5 @@
-package com.example.myapplication
+package com.example.myapplication.fragments
 
-import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
+import com.example.myapplication.model.ActorDto
+import com.example.myapplication.model.MovieDto
+import com.example.myapplication.adapters.MovieItemDecoration
+import com.example.myapplication.R
+import com.example.myapplication.adapters.ActorsAdapter
+import com.example.myapplication.helpers.TAG_MOVIE
 
 class MovieDetailsFragment : Fragment() {
 
@@ -33,7 +38,7 @@ class MovieDetailsFragment : Fragment() {
 		initViewAttributes(view)
 
 		val movie =
-			requireArguments().getParcelable<MovieDto>(resources.getString(R.string.tag_movie))
+			requireArguments().getParcelable<MovieDto>(TAG_MOVIE)
 		setViewAttributes(movie)
 
 		setActorsRecycler(view, movie as MovieDto)
@@ -78,10 +83,10 @@ class MovieDetailsFragment : Fragment() {
 	}
 
 	companion object {
-		fun newInstance(movie: MovieDto, resources: Resources): MovieDetailsFragment {
+		fun newInstance(movie: MovieDto): MovieDetailsFragment {
 			val args = Bundle()
 			val fragment = MovieDetailsFragment()
-			args.putParcelable(resources.getString(R.string.tag_movie), movie)
+			args.putParcelable(TAG_MOVIE, movie)
 			fragment.arguments = args
 			return fragment
 		}

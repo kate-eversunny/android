@@ -1,6 +1,7 @@
-package com.example.myapplication
+package com.example.myapplication.adapters
 
 import androidx.recyclerview.widget.DiffUtil
+import com.example.myapplication.model.MovieDto
 
 class MoviesCallback(
 	private val oldList: List<MovieDto>,

@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -9,22 +9,37 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.myapplication.*
+import com.example.myapplication.adapters.GenresAdapter
+import com.example.myapplication.adapters.MovieItemDecoration
+import com.example.myapplication.adapters.MoviesAdapter
+import com.example.myapplication.model.MovieDto
+import com.example.myapplication.viewModel.MovieViewModel
 import kotlinx.coroutines.*
 import java.lang.AssertionError
 
 class MoviesListFragment : Fragment() {
 
-	private var moviesModel: MoviesModel = MoviesModel(MoviesDataSourceImpl())
+	private lateinit var viewModel: MovieViewModel
+	private lateinit var liveData: LiveData<ArrayList<MovieDto>>
 	private lateinit var movieRecycler: RecyclerView
 	private lateinit var listener: MoviesAdapter.OnItemClickListener
 
 	override fun onAttach(context: Context) {
 		super.onAttach(context)
 		listener = context as MoviesAdapter.OnItemClickListener
+	}
+
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		viewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
+		viewModel.uploadMovies()
 	}
 
 	override fun onCreateView(
@@ -35,20 +50,24 @@ class MoviesListFragment : Fragment() {
 		val view: View = inflater.inflate(R.layout.activity_movie_list, container, false)
 
 		if (savedInstanceState != null) {
-			moviesModel.setMovies(
+			viewModel.setMovies(
 				savedInstanceState.getParcelableArrayList<MovieDto>(
 					resources.getString(R.string.tag_saved_movie_list)
 				) as ArrayList<MovieDto>
 			)
 		}
 		setRecyclers(view)
+		liveData = viewModel.getData()
+		liveData.observe(viewLifecycleOwner, {
+			(movieRecycler.adapter as MoviesAdapter).updateData(it)
+		})
 		return view
 	}
 
 	override fun onSaveInstanceState(outState: Bundle) {
 		outState.putParcelableArrayList(
 			resources.getString(R.string.tag_saved_movie_list),
-			moviesModel.getMovies()
+			viewModel.getMovies()
 		)
 		super.onSaveInstanceState(outState)
 	}
@@ -67,16 +86,17 @@ class MoviesListFragment : Fragment() {
 			)
 			view.findViewById<TextView>(R.id.tvMovieListNoConnection).isVisible = true
 		}
-		val scope = CoroutineScope(Dispatchers.Main)
-		scope.launch(handler) {
-			val movies = moviesModel.getMovies()
-			movieRecycler.adapter = MoviesAdapter(movies, listener)
-			movieRecycler.layoutManager = GridLayoutManager(context, 2)
-			setItemDecoration()
-			setSwipeRefresh(view, movieRecycler.adapter as MoviesAdapter)
-			if (movies.isEmpty()) {
-				throw AssertionError("No data loaded")
-			}
+		runBlocking {
+			launch(handler) {
+				val movies = viewModel.getMovies()
+				movieRecycler.adapter = MoviesAdapter(movies, listener)
+				movieRecycler.layoutManager = GridLayoutManager(context, 2)
+				setItemDecoration()
+				setSwipeRefresh(view, movieRecycler.adapter as MoviesAdapter)
+				if (movies.isEmpty()) {
+					throw AssertionError("No data loaded")
+				}
+			}.join()
 		}
 	}
 
@@ -93,7 +113,6 @@ class MoviesListFragment : Fragment() {
 	private fun setSwipeRefresh(view: View, adapter: MoviesAdapter) {
 		val pullToRefresh: SwipeRefreshLayout = view.findViewById(R.id.swipeContainerMovieList)
 		pullToRefresh.setOnRefreshListener {
-			var movies: List<MovieDto> = listOf()
 			val handler = CoroutineExceptionHandler { _, exception ->
 				Log.d(
 					resources.getString(R.string.tag_coroutineException),
@@ -104,12 +123,11 @@ class MoviesListFragment : Fragment() {
 			val scope = CoroutineScope(Dispatchers.Main)
 			scope.launch(handler) {
 				launch(Dispatchers.Default) {
-					movies = moviesModel.updateMovies()
+					viewModel.updateMovies()
 				}.join()
-				adapter.updateData(movies)
 				pullToRefresh.isRefreshing = false
 				view.findViewById<TextView>(R.id.tvMovieListNoConnection).isVisible =
-					movies.isEmpty()
+					viewModel.getMovies().isEmpty()
 			}
 		}
 	}

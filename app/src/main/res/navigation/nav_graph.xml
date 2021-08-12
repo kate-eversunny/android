@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/nav_graph"
+	app:startDestination="@id/navMovieListFragment">
+
+	<fragment
+		android:id="@+id/navMovieListFragment"
+		android:name="com.example.myapplication.fragments.MoviesListFragment"
+		tools:layout="@layout/activity_movie_list"
+		app:enterAnim="@anim/slide_in_right"
+		app:exitAnim="@anim/slide_out_left"
+		app:popEnterAnim="@anim/slide_in_left"
+		app:popExitAnim="@anim/slide_out_right">
+		<action
+			android:id="@+id/action_movieList_to_movieDetails"
+			app:destination="@id/navMovieDetailsFragment"
+			app:enterAnim="@anim/slide_in_right"
+			app:exitAnim="@anim/slide_out_left"
+			app:popEnterAnim="@anim/slide_in_left"
+			app:popExitAnim="@anim/slide_out_right" />
+		<action
+			android:id="@+id/action_movieList_to_profile"
+			app:destination="@id/navProfileFragment"
+			app:enterAnim="@anim/slide_in_right"
+			app:exitAnim="@anim/slide_out_left"
+			app:popEnterAnim="@anim/slide_in_left"
+			app:popExitAnim="@anim/slide_out_right" />
+	</fragment>
+	<fragment
+		android:id="@+id/navMovieDetailsFragment"
+		android:name="com.example.myapplication.fragments.MovieDetailsFragment"
+		tools:layout="@layout/activity_movie_details"
+		app:enterAnim="@anim/slide_in_right"
+		app:exitAnim="@anim/slide_out_left"
+		app:popEnterAnim="@anim/slide_in_left"
+		app:popExitAnim="@anim/slide_out_right">
+		<action
+			android:id="@+id/action_movieDetails_to_movieList"
+			app:destination="@id/navMovieListFragment"
+			app:enterAnim="@anim/slide_in_right"
+			app:exitAnim="@anim/slide_out_left"
+			app:popEnterAnim="@anim/slide_in_left"
+			app:popExitAnim="@anim/slide_out_right"
+			app:popUpTo="@id/navMovieListFragment"
+			app:popUpToInclusive="true"/>
+		<action
+			android:id="@+id/action_movieDetails_to_profile"
+			app:destination="@id/navProfileFragment"
+			app:enterAnim="@anim/slide_in_right"
+			app:exitAnim="@anim/slide_out_left"
+			app:popEnterAnim="@anim/slide_in_left"
+			app:popExitAnim="@anim/slide_out_right" />
+	</fragment>
+	<fragment
+		android:id="@+id/navProfileFragment"
+		android:name="com.example.myapplication.fragments.ProfileFragment"
+		tools:layout="@layout/activity_profile"
+		app:enterAnim="@anim/slide_in_right"
+		app:exitAnim="@anim/slide_out_left"
+		app:popEnterAnim="@anim/slide_in_left"
+		app:popExitAnim="@anim/slide_out_right">
+		<action
+			android:id="@+id/action_profile_to_movieList"
+			app:destination="@id/navMovieListFragment"
+			app:enterAnim="@anim/slide_in_right"
+			app:exitAnim="@anim/slide_out_left"
+			app:popEnterAnim="@anim/slide_in_left"
+			app:popExitAnim="@anim/slide_out_right" />
+	</fragment>
+
+</navigation>

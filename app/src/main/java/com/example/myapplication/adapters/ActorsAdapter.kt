@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.size.Scale
 import coil.transform.RoundedCornersTransformation
+import com.example.myapplication.model.ActorDto
+import com.example.myapplication.R
 
 class ActorsAdapter (private val actors: Array<ActorDto>): RecyclerView.Adapter<ActorsAdapter.ActorViewHolder>() {
 

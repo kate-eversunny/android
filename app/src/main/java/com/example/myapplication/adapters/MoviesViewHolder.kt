@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.adapters
 
 import android.view.View
 import android.widget.ImageView
@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.size.Scale
 import coil.transform.RoundedCornersTransformation
+import com.example.myapplication.R
+import com.example.myapplication.model.MovieDto
 
 class MoviesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 

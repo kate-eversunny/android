@@ -4,6 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class MovieDto(
+	val id: Int,
 	val imageUrl: String?,
 	val title: String?,
 	val description: String?,
@@ -16,6 +17,7 @@ data class MovieDto(
 
 ): Parcelable {
 	constructor(parcel: Parcel) : this(
+		parcel.readInt(),
 		parcel.readString(),
 		parcel.readString(),
 		parcel.readString(),
@@ -24,7 +26,7 @@ data class MovieDto(
 		parcel.readInt(),
 		parcel.readString(),
 		parcel.readString(),
-		parcel.readArray(ActorDto.javaClass.classLoader) as Array<ActorDto>
+		parcel.readArray(ActorDto::class.java.classLoader) as Array<ActorDto>
 	)
 
 	override fun describeContents(): Int {
@@ -32,6 +34,7 @@ data class MovieDto(
 	}
 
 	override fun writeToParcel(dest: Parcel?, flags: Int) {
+		dest?.writeInt(id)
 		dest?.writeString(imageUrl)
 		dest?.writeString(title)
 		dest?.writeString(description)
@@ -50,6 +53,7 @@ data class MovieDto(
 
 		other as MovieDto
 
+		if (id != other.id) return false
 		if (imageUrl != other.imageUrl) return false
 		if (title != other.title) return false
 		if (description != other.description) return false
@@ -64,7 +68,8 @@ data class MovieDto(
 	}
 
 	override fun hashCode(): Int {
-		var result = imageUrl?.hashCode() ?: 0
+		var result = id
+		result = 31 * result + (imageUrl?.hashCode() ?: 0)
 		result = 31 * result + (title?.hashCode() ?: 0)
 		result = 31 * result + (description?.hashCode() ?: 0)
 		result = 31 * result + (fullDescription?.hashCode() ?: 0)

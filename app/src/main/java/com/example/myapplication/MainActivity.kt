@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity(), MoviesAdapter.OnItemClickListener {
     }
 
     override fun onItemClick(movie: MovieDto) {
-        val bundle = bundleOf(TAG_MOVIE to movie)
+        val bundle = bundleOf(TAG_MOVIE to movie.id)
         navController.navigate(R.id.action_movieList_to_movieDetails, bundle)
     }
 

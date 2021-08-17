@@ -29,6 +29,7 @@ class MoviesListFragment : Fragment() {
 	private lateinit var liveData: LiveData<ArrayList<MovieDto>>
 	private lateinit var movieRecycler: RecyclerView
 	private lateinit var listener: MoviesAdapter.OnItemClickListener
+	private lateinit var pullToRefresh: SwipeRefreshLayout
 
 	override fun onAttach(context: Context) {
 		super.onAttach(context)
@@ -47,6 +48,7 @@ class MoviesListFragment : Fragment() {
 		savedInstanceState: Bundle?
 	): View {
 		val view: View = inflater.inflate(R.layout.activity_movie_list, container, false)
+		pullToRefresh = view.findViewById(R.id.swipeContainerMovieList)
 
 		if (savedInstanceState != null) {
 			viewModel.setMovies(
@@ -59,6 +61,7 @@ class MoviesListFragment : Fragment() {
 		liveData = viewModel.getData()
 		liveData.observe(viewLifecycleOwner, {
 			(movieRecycler.adapter as MoviesAdapter).updateData(it)
+			pullToRefresh.isRefreshing = false
 		})
 		return view
 	}
@@ -95,7 +98,7 @@ class MoviesListFragment : Fragment() {
 	}
 
 	private fun setSwipeRefresh(view: View) {
-		val pullToRefresh: SwipeRefreshLayout = view.findViewById(R.id.swipeContainerMovieList)
+		pullToRefresh.isRefreshing = true
 		pullToRefresh.setOnRefreshListener {
 			try {
 				viewModel.updateMovies()
@@ -105,7 +108,6 @@ class MoviesListFragment : Fragment() {
 					"Caught $exception"
 				)
 			}
-			pullToRefresh.isRefreshing = false
 			view.findViewById<TextView>(R.id.tvMovieListNoConnection).isVisible =
 				viewModel.getData().value?.isEmpty() ?: true
 		}

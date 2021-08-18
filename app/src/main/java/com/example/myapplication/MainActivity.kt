@@ -2,25 +2,24 @@ package com.example.myapplication
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
+import androidx.core.os.bundleOf
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import com.example.myapplication.adapters.MoviesAdapter
+import com.example.myapplication.helpers.TAG_MOVIE
+import com.example.myapplication.model.MovieDto
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity(), MoviesAdapter.OnItemClickListener {
 
-    private var movieList = MoviesListFragment.newInstance()
+    private lateinit var navController: NavController
     private lateinit var bottomNav: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        if (savedInstanceState == null) {
-            supportFragmentManager
-                .beginTransaction()
-                .add(R.id.root_layout, movieList, resources.getString(R.string.tag_movie_list))
-                .commit()
-        }
+        navController = Navigation.findNavController(this, R.id.navHostFragment)
         setBottomNavigation()
     }
 
@@ -33,7 +32,7 @@ class MainActivity : AppCompatActivity(), MoviesAdapter.OnItemClickListener {
         return BottomNavigationView.OnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.home -> {
-                    clearBackStack()
+                    navController.popBackStack(R.id.navMovieListFragment, false)
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.profile -> {
@@ -45,38 +44,14 @@ class MainActivity : AppCompatActivity(), MoviesAdapter.OnItemClickListener {
         }
     }
 
-    private fun clearBackStack() {
-        for (i in 0 until supportFragmentManager.backStackEntryCount) {
-            supportFragmentManager.popBackStack()
-        }
-    }
-
     private fun launchProfileFragment() {
-        val tag = resources.getString(R.string.tag_profile)
-        checkBackStack(tag)
-
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.root_layout, ProfileFragment.newInstance(), tag)
-            .addToBackStack(tag)
-            .commit()
-    }
-
-    private fun checkBackStack(tag: String) {
-        if (supportFragmentManager.findFragmentByTag(tag) != null) {
-            supportFragmentManager.popBackStack(tag, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-        }
+        super.onPostResume()
+        navController.navigate(R.id.navProfileFragment)
     }
 
     override fun onItemClick(movie: MovieDto) {
-        val detailsFragment = MovieDetailsFragment.newInstance(movie, resources)
-        val tag = resources.getString(R.string.tag_movie_details)
-
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.root_layout, detailsFragment, tag)
-            .addToBackStack(tag)
-            .commit()
+        val bundle = bundleOf(TAG_MOVIE to movie.id)
+        navController.navigate(R.id.action_movieList_to_movieDetails, bundle)
     }
 
     override fun onBackPressed() {
@@ -85,7 +60,9 @@ class MainActivity : AppCompatActivity(), MoviesAdapter.OnItemClickListener {
                 super.onBackPressed()
             }
             else -> {
+                super.onPostResume()
                 bottomNav.selectedItemId = R.id.home
+                navController.popBackStack(R.id.navMovieListFragment, false)
             }
         }
     }

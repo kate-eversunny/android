@@ -1,11 +1,11 @@
-package com.example.myapplication
+package com.example.myapplication.model
 
 import java.lang.AssertionError
 
-class MoviesModel(
-	private val moviesDataSource: MoviesDataSource
-) {
+object MoviesModel {
 	private var movies: ArrayList<MovieDto> = arrayListOf()
+
+	private val moviesDataSource: MoviesDataSource = MoviesDataSourceImpl()
 
 	private fun loadMovies(): ArrayList<MovieDto> {
 		movies = moviesDataSource.loadMovies()

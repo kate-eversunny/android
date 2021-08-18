@@ -1,6 +1,7 @@
-package com.example.myapplication
+package com.example.myapplication.adapters
 
 import androidx.recyclerview.widget.DiffUtil
+import com.example.myapplication.model.MovieDto
 
 class MoviesCallback(
 	private val oldList: List<MovieDto>,
@@ -11,7 +12,7 @@ class MoviesCallback(
 
 	override fun getNewListSize(): Int = newList.size
 
-	override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean = oldList[oldItemPosition].title == newList[newItemPosition].title
+	override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean = oldList[oldItemPosition].id == newList[newItemPosition].id
 
 	override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean = oldList[oldItemPosition] == newList[newItemPosition]
 }

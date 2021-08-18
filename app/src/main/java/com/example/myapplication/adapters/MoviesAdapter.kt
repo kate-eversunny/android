@@ -1,14 +1,17 @@
-package com.example.myapplication
+package com.example.myapplication.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.model.MovieDto
+import com.example.myapplication.R
 
 class MoviesAdapter(
-	private var movies: List<MovieDto>,
 	private var listener: OnItemClickListener
 	) : RecyclerView.Adapter<MoviesViewHolder>() {
+
+	private var movies: List<MovieDto> = listOf()
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
 		val inflater : LayoutInflater = LayoutInflater.from(parent.context)

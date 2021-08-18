@@ -1,6 +1,5 @@
-package com.example.myapplication
+package com.example.myapplication.fragments
 
-import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,10 +8,18 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
+import com.example.myapplication.model.MovieDto
+import com.example.myapplication.adapters.MovieItemDecoration
+import com.example.myapplication.R
+import com.example.myapplication.adapters.ActorsAdapter
+import com.example.myapplication.helpers.TAG_MOVIE
+import com.example.myapplication.viewModel.MovieDetailsViewModel
 
 class MovieDetailsFragment : Fragment() {
 
@@ -23,6 +30,16 @@ class MovieDetailsFragment : Fragment() {
 	private lateinit var movieAnnotation: TextView
 	private lateinit var movieRating: RatingBar
 	private lateinit var movieAgeRestriction: TextView
+	private lateinit var viewModel: MovieDetailsViewModel
+	private lateinit var liveData: LiveData<MovieDto>
+	private lateinit var actorRecycler: RecyclerView
+
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		viewModel = ViewModelProvider(this).get(MovieDetailsViewModel::class.java)
+		val id = requireArguments().getInt(TAG_MOVIE)
+		viewModel.uploadMovie(id)
+	}
 
 	override fun onCreateView(
 		inflater: LayoutInflater,
@@ -32,11 +49,13 @@ class MovieDetailsFragment : Fragment() {
 		val view: View = inflater.inflate(R.layout.activity_movie_details, container, false)
 		initViewAttributes(view)
 
-		val movie =
-			requireArguments().getParcelable<MovieDto>(resources.getString(R.string.tag_movie))
-		setViewAttributes(movie)
+		setActorsRecycler(view)
+		liveData = viewModel.getData()
+		liveData.observe(viewLifecycleOwner, {
+			setViewAttributes(it)
+			(actorRecycler.adapter as ActorsAdapter).updateData(it.actors)
+		})
 
-		setActorsRecycler(view, movie as MovieDto)
 		return view
 	}
 
@@ -62,10 +81,9 @@ class MovieDetailsFragment : Fragment() {
 		movieRating.rating = movie?.rateScore!!.toFloat()
 	}
 
-	private fun setActorsRecycler(view: View, movie: MovieDto) {
-		val actorRecycler: RecyclerView = view.findViewById(R.id.rvActors)
-		val actors: Array<ActorDto> = movie.actors
-		actorRecycler.adapter = ActorsAdapter(actors)
+	private fun setActorsRecycler(view: View) {
+		actorRecycler = view.findViewById(R.id.rvActors)
+		actorRecycler.adapter = ActorsAdapter()
 		actorRecycler.layoutManager =
 			LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 		val itemDecoration = MovieItemDecoration(
@@ -78,10 +96,10 @@ class MovieDetailsFragment : Fragment() {
 	}
 
 	companion object {
-		fun newInstance(movie: MovieDto, resources: Resources): MovieDetailsFragment {
+		fun newInstance(movie: MovieDto): MovieDetailsFragment {
 			val args = Bundle()
 			val fragment = MovieDetailsFragment()
-			args.putParcelable(resources.getString(R.string.tag_movie), movie)
+			args.putInt(TAG_MOVIE, movie.id)
 			fragment.arguments = args
 			return fragment
 		}

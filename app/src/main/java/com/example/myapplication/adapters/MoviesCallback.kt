@@ -1,11 +1,11 @@
 package com.example.myapplication.adapters
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.myapplication.model.MovieDto
+import com.example.myapplication.entities.Movie
 
 class MoviesCallback(
-	private val oldList: List<MovieDto>,
-	private val newList: List<MovieDto>
+	private val oldList: List<Movie>,
+	private val newList: List<Movie>
 	): DiffUtil.Callback() {
 
 	override fun getOldListSize(): Int = oldList.size

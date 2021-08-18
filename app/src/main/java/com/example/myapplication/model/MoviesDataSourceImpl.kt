@@ -1,10 +1,13 @@
 package com.example.myapplication.model
 
+import com.example.myapplication.entities.Movie
+import com.example.myapplication.entities.Actor
+
 class MoviesDataSourceImpl : MoviesDataSource {
 
-	override fun loadMovies(): ArrayList<MovieDto> = arrayListOf(
-		MovieDto(
-			id = 1,
+	override fun loadMovies(): ArrayList<Movie> = arrayListOf(
+		Movie(
+			id = 0,
 			title = "Гнев человеческий",
 			description = "Эйч — загадочный и холодный на вид джентльмен, но внутри него пылает жажда справедливости. Преследуя...",
 			fullDescription = "Эйч — загадочный и холодный на вид джентльмен, но внутри него пылает жажда справедливости. Преследуя свои мотивы, он внедряется в инкассаторскую компанию, чтобы выйти на соучастников серии многомиллионных ограблений, потрясших Лос-Анджелес. В этой запутанной игре у каждого своя роль, но под подозрением оказываются все. Виновных же обязательно постигнет гнев человеческий.",
@@ -14,22 +17,25 @@ class MoviesDataSourceImpl : MoviesDataSource {
 			release = "22.04.2021",
 			genre = "боевики",
 			actors = arrayOf(
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Джейсон Стэйтем",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/5c6d81b5-d31c-4389-89d0-4b554b82b68b/280x420",
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Холт Маккэллани",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/f3e51e20-f760-422a-8bda-82c9d8cd9c4a/280x420"
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Джош Хартнетт",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/51752849-9afa-484e-9b09-61eafae6401e/280x420"
 				),
 			),
 		),
-		MovieDto(
-			id = 2,
+		Movie(
+			id = 0,
 			title = "Мортал Комбат",
 			description = "Боец смешанных единоборств Коул Янг не раз соглашался проиграть за деньги. Он не знает о своем наследии...",
 			fullDescription = "Боец смешанных единоборств Коул Янг не раз соглашался проиграть за деньги. Он не знает о своем наследии и почему император Внешнего мира Шан Цзун посылает могущественного криомансера Саб-Зиро на охоту за Коулом. Янг боится за безопасность своей семьи, и майор спецназа Джакс, обладатель такой же отметки в виде дракона, как и у Коула, советует ему отправиться на поиски Сони Блейд. Вскоре Коул, Соня и наёмник Кано оказываются в храме Лорда Рейдена, Старшего Бога и защитника Земного царства, который дает убежище тем, кто носит метку. Здесь прибывшие тренируются с опытными воинами Лю Каном и Кун Лао, готовясь противостоять врагам из Внешнего мира, а для этого им нужно раскрыть в себе аркану — могущественную силу души.",
@@ -39,22 +45,25 @@ class MoviesDataSourceImpl : MoviesDataSource {
 			release = "08.04.2021",
 			genre = "боевики",
 			actors = arrayOf(
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Льюис Тан",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/9f406299-77c7-4995-b7db-32e9c583bdc6/280x420",
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Джо Таслим",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1629390/8ae91308-2e72-4c6d-9572-f39ea159658e/280x420"
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Джессика МакНэми",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/d2f5d264-114c-4d3c-b30c-88e49cf3005f/280x420"
 				),
 			),
 		),
-		MovieDto(
-			id = 3,
+		Movie(
+			id = 0,
 			title = "Упс... Приплыли!",
 			description = "От Великого потопа зверей спас ковчег. Но спустя полгода скитаний они готовы сбежать с него куда угодно...",
 			fullDescription = "От Великого потопа зверей спас ковчег. Но спустя полгода скитаний они готовы сбежать с него куда угодно. Нервы на пределе. Хищники готовы забыть про запреты и заглядываются на травоядных. Единственное спасение — найти райский остров. Там простор и полно еды. Но даже если он совсем близко, будут ли рады местные такому количеству гостей?",
@@ -64,23 +73,26 @@ class MoviesDataSourceImpl : MoviesDataSource {
 			release = "29.04.2021",
 			genre = "детские",
 			actors = arrayOf(
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Дермот Магеннис",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/3c4ac913-2bd6-490c-9cbb-a5bd3b5cddfc/280x420",
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Тара Флинн",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/4d77ed9a-a4c3-4965-9ac4-a64de322a27e/280x420"
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Мэри Мюррей",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/19258aed-a52f-4b81-a5db-191d049c8db5/280x420"
 				),
 			),
 
 		),
-		MovieDto(
-			id = 4,
+		Movie(
+			id = 0,
 			title = "The Box",
 			description = "Уличный музыкант знакомится с музыкальным продюсером, и они вдвоём отправляются в путешествие...",
 			fullDescription = "Уличный музыкант знакомится с музыкальным продюсером, и они вдвоём отправляются в путешествие, которое перевернёт их жизни.",
@@ -90,22 +102,25 @@ class MoviesDataSourceImpl : MoviesDataSource {
 			release = "13.05.2021",
 			genre = "мюзиклы",
 			actors = arrayOf(
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Пак Чхан-ёль",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/3e3139c9-a404-4e80-86e4-a7767f27b5dd/280x420",
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Чо Даль-хван",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/bc65f999-b4f6-4469-9602-ead998d6cb46/280x420"
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Ким Джи-хён",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1946459/69a20613-fc51-4129-935d-29a35eb671a5/280x420"
 				),
 			),
 		),
-		MovieDto(
-			id = 5,
+		Movie(
+			id = 0,
 			title = "Сага о Дэнни Эрнандесе",
 			description = "Tekashi69 или Сикснайн — знаменитый бруклинский рэпер с радужными волосами — прогремел...",
 			fullDescription = "Tekashi69 или Сикснайн — знаменитый бруклинский рэпер с радужными волосами — прогремел синглом «Gummo», коллабом с Ники Минаж, а также многочисленными преступлениями. Количество обвинений растет пропорционально интернет-популярности, а репутация секс-наркомана получает свое подтверждение не только в скандальных видео музыканта. Похоже, это последний герой нашего времени, которого не коснулась культура отмены: у Tekashi69 24 млн. подписчиков в Instagram, миллиард просмотров на Youtube и несколько судимостей.",
@@ -115,14 +130,15 @@ class MoviesDataSourceImpl : MoviesDataSource {
 			release = "16.11.2020",
 			genre = "документальные",
 			actors = arrayOf(
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "6ix9ine",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/4774061/54167000-7218-4d11-b70a-8988f243af5f/280x420",
 				),
 			),
 		),
-		MovieDto(
-			id = 6,
+		Movie(
+			id = 0,
 			title = "Пчелка Майя",
 			description = "Когда упрямая пчелка Майя и ее лучший друг Вилли спасают принцессу-муравьишку, начинается сказочное...",
 			fullDescription = "Когда упрямая пчелка Майя и ее лучший друг Вилли спасают принцессу-муравьишку, начинается сказочное и опасное приключение, которое приведет их в необычные новые миры и проверит их дружбу на прочность.",
@@ -132,22 +148,25 @@ class MoviesDataSourceImpl : MoviesDataSource {
 			release = "06.05.2021",
 			genre = "мультфильмы",
 			actors = arrayOf(
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Коко Джек Гиллис",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/a3f3ad44-69a4-4ee9-99ed-f207638a1b8d/280x420",
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Бенсон Джек Энтони",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/9fd32e27-0815-4d77-b8ee-a2ea02971ca0/280x420"
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Кристофер Карисиу",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/48777755-c0c8-467f-a0ab-d72d646f1a28/280x420"
 				),
 			),
 		),
-		MovieDto(
-			id = 7,
+		Movie(
+			id = 0,
 			title = "Круэлла",
 			description = "Невероятно одаренная мошенница по имени Эстелла решает сделать себе имя в мире моды.",
 			fullDescription = "Невероятно одаренная мошенница по имени Эстелла решает сделать себе имя в мире моды. Ее лучшие друзья — парочка юных карманников, которые ценят страсть Эстеллы к приключениям и надеются вместе с ней отвоевать себе место под солнцем на улицах британской столицы. В один прекрасный день модное чутье Эстеллы привлекает внимание шикарной и пугающе высокомерной баронессы фон Хельман.",
@@ -157,26 +176,30 @@ class MoviesDataSourceImpl : MoviesDataSource {
 			release = "03.06.2021",
 			genre = "комедии",
 			actors = arrayOf(
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Эмма Стоун",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1900788/1c629b89-4d69-4ec0-a050-c3aa5721477b/280x420",
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Эмма Томпсон",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/1db012e7-4e46-4885-b7c0-b6920275dca4/280x420"
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Джоэль Фрай",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/becab811-6925-4806-81c0-cc7686985ed1/280x420"
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Пол Уолтер Хаузер",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/f9589fa9-03a8-4808-bb1f-0a363842488d/280x420"
 				),
 			),
 		),
-		MovieDto(
-			id = 8,
+		Movie(
+			id = 0,
 			title = "Чёрная вдова",
 			description = "Чёрной Вдове придется вспомнить о том, что было в её жизни задолго до присоединения к команде Мстителей",
 			fullDescription = "Чёрной Вдове придется вспомнить о том, что было в её жизни задолго до присоединения к команде Мстителей, и узнать об опасном заговоре, в который оказываются втянуты её старые знакомые - Елена (в исполнении Флоренс Пью), Алексей, также известный как Красный Страж (в исполнении Дэвида Харбора), и Мелина (в исполнении Рэйчел Вайс).",
@@ -186,15 +209,18 @@ class MoviesDataSourceImpl : MoviesDataSource {
 			release = "08.07.2021",
 			genre = "фантастика",
 			actors = arrayOf(
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Скарлетт Йоханссон",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/a2d7d36f-2be8-4c5d-9892-0adc2437da5d/280x420",
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Флоренс Пью",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/4774061/aed40aa0-fac3-41a0-acc0-35344a7b6059/280x420"
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Дэвид Харбор",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1629390/a66f9ce1-5b06-443c-8670-74bbb45f1185/280x420"
 				),
@@ -202,9 +228,9 @@ class MoviesDataSourceImpl : MoviesDataSource {
 		),
 	)
 
-	override fun updateMovies(): ArrayList<MovieDto> = arrayListOf(
-		MovieDto(
-			id = 9,
+	override fun updateMovies(): ArrayList<Movie> = arrayListOf(
+		Movie(
+			id = 0,
 			title = "Лига справедливости Зака Снайдера",
 			description = "Вдохновившись самопожертвованием Супермена, Брюс Уэйн вновь обретает веру в человечество. Он...",
 			fullDescription = "Вдохновившись самопожертвованием Супермена, Брюс Уэйн вновь обретает веру в человечество. Он заручается поддержкой новой союзницы Дианы Принс, чтобы сразиться с ещё более могущественным противником. Бэтмен и Чудо-женщина набирают команду сверхлюдей для борьбы с пробудившейся угрозой.",
@@ -214,22 +240,25 @@ class MoviesDataSourceImpl : MoviesDataSource {
 			release = "18.03.2021",
 			genre = "фантастика",
 			actors = arrayOf(
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Бен Аффлек",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1946459/dbb7f246-d87c-43dc-97e3-30059dd7596f/280x420",
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Галь Гадот",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/42f3e662-b016-48aa-b62c-0fc651833997/280x420"
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Генри Кавилл",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/01084bcd-9d4f-4d29-93e1-80d819b0d7d1/280x420"
 				),
 			),
 		),
-		MovieDto(
-			id = 10,
+		Movie(
+			id = 0,
 			title = "Майор Гром: Чумной доктор",
 			description = "Майор полиции Игорь Гром известен всему Санкт-Петербургу пробивным характером и непримиримой...",
 			fullDescription = "Майор полиции Игорь Гром известен всему Санкт-Петербургу пробивным характером и непримиримой позицией по отношению к преступникам всех мастей. Неимоверная сила, аналитический склад ума и неподкупность — всё это делает майора Грома идеальным полицейским. Но всё резко меняется с появлением человека в маске Чумного Доктора. Заявив, что его город «болен чумой беззакония», он принимается за «лечение», убивая людей, которые в своё время избежали наказания при помощи денег и влияния.",
@@ -239,22 +268,25 @@ class MoviesDataSourceImpl : MoviesDataSource {
 			release = "01.04.2021",
 			genre = "боевики",
 			actors = arrayOf(
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Тихон Жизневский",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/d42fd1e5-5d93-4cb8-ac66-945c6b9669cf/280x420",
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Любовь Аксенова",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/55e31c38-272f-4ad9-a2bb-5ac29efdd9af/280x420"
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Алексей Маклаков",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/13d2ead2-3874-42ca-92e7-d4f6034d9e7a/280x420"
 				),
 			),
 		),
-		MovieDto(
-			id = 11,
+		Movie(
+			id = 0,
 			title = "Райя и последний дракон",
 			description = "Давным-давно в волшебной стране Кумандре бок о бок с людьми жили драконы — создатели и хранители...",
 			fullDescription = "Давным-давно в волшебной стране Кумандре бок о бок с людьми жили драконы — создатели и хранители воды. Мирной жизни пришел конец, когда появились друуны. Порождения тьмы обращали людей и драконов в каменные изваяния, и только магия драконихи Сису смогла прогнать злых созданий и расколдовать людей, но на драконов не подействовала. Кумандра раскололась на государства Сердца, Клыка, Когтя, Хребта и Хвоста, а волшебный драконий камень хранился в стране Сердца, которой правил отец Райи. Он мечтал объединить земли, но из-за человеческой жадности и зависти артефакт раскололся. Правитель каждой страны заполучил по осколку, а друуны снова стали властвовать безраздельно.",
@@ -264,23 +296,26 @@ class MoviesDataSourceImpl : MoviesDataSource {
 			release = "04.03.2021",
 			genre = "мультфильмы",
 			actors = arrayOf(
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Келли Мари Трэн",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/d408255d-b321-44ed-803e-e529883b2e3f/280x420",
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Аквафина",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/ccaa0be2-1a89-4fcb-ae4d-ac726ed8ed11/280x420"
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Джемма Чан",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/517c9f7c-9b38-4b43-a1f9-9587f232808b/280x420"
 				),
 			),
 
 			),
-		MovieDto(
-			id = 12,
+		Movie(
+			id = 0,
 			title = "Никто",
 			description = "Непримечательный и незаметный семьянин Хатч живёт скучной жизнью обычного аудитора, пока однажды...",
 			fullDescription = "Непримечательный и незаметный семьянин Хатч живёт скучной жизнью обычного аудитора, пока однажды в его дом не вламываются грабители. И это бы сошло им с рук, если бы они не забрали браслетик его маленькой дочки. Не в силах это терпеть, Хатч отправляется на поиски наглецов, а на обратном пути ввязывается в драку с пьяными хулиганами, пристававшими к девушке в общественном транспорте. От души помахав кулаками, наш аудитор отправляет дебоширов в больницу, но оказывается, что один из пострадавших — брат влиятельного русского бандита. И он теперь жаждет мести.",
@@ -290,22 +325,25 @@ class MoviesDataSourceImpl : MoviesDataSource {
 			release = "18.03.2021",
 			genre = "боевики",
 			actors = arrayOf(
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Боб Оденкёрк",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/0f64539d-b236-4e01-8791-f19233705c59/280x420",
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Алексей Серебряков",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1946459/d1c1c977-3069-4211-94d4-5d05f0d1cb71/220x330"
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Кристофер Ллойд",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1900788/7d61330c-de65-4b60-a225-03ce35269c30/280x420"
 				),
 			),
 		),
-		MovieDto(
-			id = 13,
+		Movie(
+			id = 0,
 			title = "Годзилла против Конга",
 			description = "Конг и группа ученых отправляются в опасное путешествие в поисках родного дома гиганта...",
 			fullDescription = "Конг и группа ученых отправляются в опасное путешествие в поисках родного дома гиганта. Среди них девочка Джия, единственная, кто умеет общаться с Конгом. Неожиданно они сталкиваются с разъяренным Годзиллой, разрушающим все на своем пути. Битва двух титанов, спровоцированная неведомыми силами — лишь малая часть тайны, спрятанной в недрах Земли.",
@@ -315,22 +353,25 @@ class MoviesDataSourceImpl : MoviesDataSource {
 			release = "25.03.2020",
 			genre = "фантастика",
 			actors = arrayOf(
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Александр Скарсгард",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/4486454/ff4d011d-1024-43d1-b139-ee82801e7233/280x420",
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Милли Бобби Браун",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/7adfcecd-f3f3-41ce-8de0-391850ac675e/280x420",
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Ребекка Холл",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/4cce5cc9-fd44-4da4-88f0-3ca51986ed48/280x420",
 				),
 			),
 		),
-		MovieDto(
-			id = 14,
+		Movie(
+			id = 0,
 			title = "Тихое место 2",
 			description = "474 дня прошло после нападения на Землю охотящихся на звук существ, семья Эбботт продолжает бороться...",
 			fullDescription = "474 дня прошло после нападения на Землю охотящихся на звук существ, семья Эбботт продолжает бороться за жизнь в полной тишине. Столкнувшись со смертельной угрозой в собственном доме, они вынуждены отправиться во внешний мир, где находят убежище и старого знакомого семьи. Поймав радиосигнал, Реган вычисляет место предполагаемой колонии выживших и решает во что бы то ни стало её разыскать.",
@@ -340,22 +381,25 @@ class MoviesDataSourceImpl : MoviesDataSource {
 			release = "03.06.2021",
 			genre = "ужасы",
 			actors = arrayOf(
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Эмили Блант",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/6c2b1c0e-0ecb-4453-aa14-0d1cd4b09448/280x420",
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Миллисент Симмондс",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/1ad27a48-5def-4a15-9225-bc1e7715abb7/280x420"
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Киллиан Мёрфи",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/60c9b049-6177-463f-b518-40337fbeb681/280x420"
 				),
 			),
 		),
-		MovieDto(
-			id = 15,
+		Movie(
+			id = 0,
 			title = "Лука",
 			description = "Незабываемые каникулы, в которых есть место и домашней пасте, и мороженому, и...",
 			fullDescription = "Незабываемые каникулы, в которых есть место и домашней пасте, и мороженому, и бесконечным поездкам на мопеде, мальчик по имени Лука проводит в красивом приморском городке, расположенном на итальянской Ривьере. Ни одно приключение Луки не обходится без участия его нового лучшего друга, и беззаботность отдыха омрачает только лишь тот факт, что на самом деле в облике мальчика скрывается морской монстр из глубин лагуны, на берегу которой стоит городок.",
@@ -365,22 +409,25 @@ class MoviesDataSourceImpl : MoviesDataSource {
 			release = "17.06.2021",
 			genre = "мультфильмы",
 			actors = arrayOf(
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Джейкоб Тремблей",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/4716873/664c3261-9242-4c3a-9c53-80950ebe609c/280x420",
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Джек Дилан Грейзер",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/980d3eeb-eeac-4e7e-a551-289baf4081b6/280x420"
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Майя Рудольф",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/d9ca42a5-ece1-4712-ad5e-5432a3dfb490/280x420"
 				),
 			),
 		),
-		MovieDto(
-			id = 16,
+		Movie(
+			id = 0,
 			title = "Время",
 			description = "Семья отправляется в отпуск на тропический остров. Отдохнув всего пару часов на уединенном пляже, они обнаруживают...",
 			fullDescription = "Семья отправляется в отпуск на тропический остров. Отдохнув всего пару часов на уединенном пляже, они обнаруживают, что повзрослели на несколько лет, а вся жизнь теперь — это один день.",
@@ -390,15 +437,18 @@ class MoviesDataSourceImpl : MoviesDataSource {
 			release = "22.07.2021",
 			genre = "триллеры",
 			actors = arrayOf(
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Гаэль Гарсиа Берналь",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/798a0516-857d-490f-9b5b-5a4747c8981f/280x420",
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Вики Крипс",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/392c0a2f-28d6-4670-b712-0459a91622f7/280x420"
 				),
-				ActorDto(
+				Actor(
+					id = 0,
 					name = "Ники Амука-Бёрд",
 					imageUrl = "https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/e59b8c5e-c25b-4b2b-b5f7-ff78b1212a96/280x420"
 				),

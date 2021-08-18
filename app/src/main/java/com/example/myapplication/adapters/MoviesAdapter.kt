@@ -4,14 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.model.MovieDto
 import com.example.myapplication.R
+import com.example.myapplication.entities.Movie
 
 class MoviesAdapter(
 	private var listener: OnItemClickListener
 	) : RecyclerView.Adapter<MoviesViewHolder>() {
 
-	private var movies: List<MovieDto> = listOf()
+	private var movies: List<Movie> = listOf()
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
 		val inflater : LayoutInflater = LayoutInflater.from(parent.context)
@@ -25,11 +25,11 @@ class MoviesAdapter(
 		}
 	}
 
-	private fun getItem(position: Int): MovieDto = movies[position]
+	private fun getItem(position: Int): Movie = movies[position]
 
 	override fun getItemCount(): Int = movies.size
 
-	fun updateData(newList: List<MovieDto> ) {
+	fun updateData(newList: List<Movie> ) {
 		val callback = MoviesCallback(movies , newList)
 		val diff = DiffUtil.calculateDiff(callback)
 		movies = newList
@@ -37,7 +37,7 @@ class MoviesAdapter(
 	}
 
 	interface OnItemClickListener {
-		fun onItemClick(movie: MovieDto)
+		fun onItemClick(movie: Movie)
 	}
 }
 

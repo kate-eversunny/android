@@ -18,8 +18,9 @@ import com.example.myapplication.model.MovieDto
 import com.example.myapplication.adapters.MovieItemDecoration
 import com.example.myapplication.R
 import com.example.myapplication.adapters.ActorsAdapter
+import com.example.myapplication.entities.Movie
 import com.example.myapplication.helpers.TAG_MOVIE
-import com.example.myapplication.viewModel.MovieDetailsViewModel
+import com.example.myapplication.viewModels.MovieDetailsViewModel
 
 class MovieDetailsFragment : Fragment() {
 
@@ -31,14 +32,14 @@ class MovieDetailsFragment : Fragment() {
 	private lateinit var movieRating: RatingBar
 	private lateinit var movieAgeRestriction: TextView
 	private lateinit var viewModel: MovieDetailsViewModel
-	private lateinit var liveData: LiveData<MovieDto>
+	private lateinit var liveData: LiveData<Movie>
 	private lateinit var actorRecycler: RecyclerView
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		viewModel = ViewModelProvider(this).get(MovieDetailsViewModel::class.java)
 		val id = requireArguments().getInt(TAG_MOVIE)
-		viewModel.uploadMovie(id)
+		activity?.applicationContext?.let { viewModel.uploadMovie(it, id) }
 	}
 
 	override fun onCreateView(
@@ -52,8 +53,8 @@ class MovieDetailsFragment : Fragment() {
 		setActorsRecycler(view)
 		liveData = viewModel.getData()
 		liveData.observe(viewLifecycleOwner, {
-			setViewAttributes(it)
 			(actorRecycler.adapter as ActorsAdapter).updateData(it.actors)
+			setViewAttributes(it)
 		})
 
 		return view
@@ -69,16 +70,16 @@ class MovieDetailsFragment : Fragment() {
 		movieAgeRestriction = view.findViewById(R.id.tvMovieDetailsAgeRestriction)
 	}
 
-	private fun setViewAttributes(movie: MovieDto?) {
-		moviePoster.load(movie?.imageUrl) {
+	private fun setViewAttributes(movie: Movie) {
+		moviePoster.load(movie.imageUrl) {
 			transformations(RoundedCornersTransformation(30f))
 		}
-		movieName.text = movie?.title
-		movieAnnotation.text = movie?.fullDescription
-		movieAgeRestriction.text = StringBuilder(movie?.ageRestriction.toString() + "+")
-		movieGenre.text = movie?.genre
-		movieReleaseDate.text = movie?.release
-		movieRating.rating = movie?.rateScore!!.toFloat()
+		movieName.text = movie.title
+		movieAnnotation.text = movie.fullDescription
+		movieAgeRestriction.text = StringBuilder(movie.ageRestriction.toString() + "+")
+		movieGenre.text = movie.genre
+		movieReleaseDate.text = movie.release
+		movieRating.rating = movie.rateScore.toFloat()
 	}
 
 	private fun setActorsRecycler(view: View) {

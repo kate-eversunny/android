@@ -55,12 +55,12 @@
 				android:paddingTop="@dimen/item_genre_vertical_padding"
 				android:paddingEnd="@dimen/item_genre_horizontal_padding"
 				android:paddingBottom="@dimen/item_genre_vertical_padding"
-				android:text="@string/genre_action_movie"
 				android:textColor="@color/black"
 				android:textSize="@dimen/text_size_10"
 				android:textStyle="normal"
 				app:layout_constraintStart_toStartOf="@id/cvMovieDetailsCard"
-				app:layout_constraintTop_toTopOf="@id/cvMovieDetailsCard" />
+				app:layout_constraintTop_toTopOf="@id/cvMovieDetailsCard"
+				tools:text="@string/genre_action_movie" />
 
 			<TextView
 				android:id="@+id/tvMovieDetailsReleaseDate"
@@ -70,11 +70,11 @@
 				android:layout_marginTop="32dp"
 				android:elevation="@dimen/elevation_default"
 				android:gravity="center_vertical"
-				android:text="@string/launch_date_wrath_of_man"
 				android:textColor="@color/black"
 				android:textSize="@dimen/text_size_12"
 				app:layout_constraintStart_toEndOf="@id/tvMovieDetailsGenre"
-				app:layout_constraintTop_toTopOf="@id/cvMovieDetailsCard" />
+				app:layout_constraintTop_toTopOf="@id/cvMovieDetailsCard"
+				tools:text="@string/launch_date_wrath_of_man" />
 
 			<TextView
 				android:id="@+id/tvMovieDetailsName"
@@ -84,12 +84,12 @@
 				android:layout_marginTop="@dimen/margin_60"
 				android:elevation="@dimen/elevation_default"
 				android:singleLine="false"
-				android:text="@string/movie_name_wrath_of_man"
 				android:textColor="@color/black"
 				android:textSize="@dimen/text_size_20"
 				android:textStyle="bold"
 				app:layout_constraintStart_toStartOf="@id/cvMovieDetailsCard"
-				app:layout_constraintTop_toTopOf="@id/cvMovieDetailsCard" />
+				app:layout_constraintTop_toTopOf="@id/cvMovieDetailsCard"
+				tools:text="@string/movie_name_wrath_of_man" />
 
 
 			<TextView
@@ -101,11 +101,11 @@
 				android:background="@drawable/circle_border"
 				android:elevation="@dimen/elevation_default"
 				android:gravity="center"
-				android:text="@string/age_restriction_18"
 				android:textColor="@color/black"
 				android:textSize="@dimen/text_size_14"
 				app:layout_constraintEnd_toEndOf="@id/cvMovieDetailsCard"
-				app:layout_constraintTop_toTopOf="@id/cvMovieDetailsCard" />
+				app:layout_constraintTop_toTopOf="@id/cvMovieDetailsCard"
+				tools:text="@string/age_restriction_18" />
 
 			<RatingBar
 				android:id="@+id/rbMovieDetailsRating"
@@ -116,9 +116,9 @@
 				android:elevation="@dimen/elevation_default"
 				android:isIndicator="true"
 				android:numStars="5"
-				android:rating="4"
 				app:layout_constraintStart_toStartOf="@id/tvMovieDetailsName"
-				app:layout_constraintTop_toBottomOf="@id/tvMovieDetailsName" />
+				app:layout_constraintTop_toBottomOf="@id/tvMovieDetailsName"
+				tools:rating="4" />
 
 			<TextView
 				android:id="@+id/tvMovieDetailsAnnotation"
@@ -128,13 +128,13 @@
 				android:layout_marginTop="@dimen/margin_20"
 				android:layout_marginEnd="@dimen/margin_8"
 				android:elevation="@dimen/elevation_default"
-				android:text="@string/description_wrath_of_man"
 				android:textColor="@color/black"
 				android:textSize="@dimen/text_size_14"
 				android:textStyle="normal"
 				app:layout_constraintEnd_toEndOf="@id/cvMovieDetailsCard"
 				app:layout_constraintStart_toStartOf="@id/cvMovieDetailsCard"
-				app:layout_constraintTop_toBottomOf="@id/rbMovieDetailsRating" />
+				app:layout_constraintTop_toBottomOf="@id/rbMovieDetailsRating"
+				tools:text="@string/description_wrath_of_man" />
 
 			<TextView
 				android:id="@+id/tvMovieDetailsActorsTitle"

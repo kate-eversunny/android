@@ -6,8 +6,8 @@ import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.myapplication.adapters.MoviesAdapter
+import com.example.myapplication.entities.Movie
 import com.example.myapplication.helpers.TAG_MOVIE
-import com.example.myapplication.model.MovieDto
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity(), MoviesAdapter.OnItemClickListener {
         navController.navigate(R.id.navProfileFragment)
     }
 
-    override fun onItemClick(movie: MovieDto) {
+    override fun onItemClick(movie: Movie) {
         val bundle = bundleOf(TAG_MOVIE to movie.id)
         navController.navigate(R.id.action_movieList_to_movieDetails, bundle)
     }

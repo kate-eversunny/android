@@ -1,6 +1,8 @@
 package com.example.myapplication.model
 
+import com.example.myapplication.entities.Movie
+
 interface MoviesDataSource {
-	fun loadMovies(): ArrayList<MovieDto>
-	fun updateMovies(): ArrayList<MovieDto>
+	fun loadMovies(): ArrayList<Movie>
+	fun updateMovies(): ArrayList<Movie>
 }

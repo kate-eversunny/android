@@ -10,12 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.size.Scale
 import coil.transform.RoundedCornersTransformation
-import com.example.myapplication.model.ActorDto
 import com.example.myapplication.R
+import com.example.myapplication.entities.Actor
 
 class ActorsAdapter : RecyclerView.Adapter<ActorsAdapter.ActorViewHolder>() {
 
-	private var actors: Array<ActorDto> = arrayOf()
+	private var actors: Array<Actor> = arrayOf()
 
 	class ActorViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 		val name: TextView = view.findViewById(R.id.tvItemActorName)
@@ -39,7 +39,7 @@ class ActorsAdapter : RecyclerView.Adapter<ActorsAdapter.ActorViewHolder>() {
 
 	override fun getItemCount(): Int = actors.size
 
-	fun updateData(newArray: Array<ActorDto>) {
+	fun updateData(newArray: Array<Actor>) {
 		val callback = ActorsCallback(actors, newArray)
 		val diff = DiffUtil.calculateDiff(callback)
 		actors = newArray

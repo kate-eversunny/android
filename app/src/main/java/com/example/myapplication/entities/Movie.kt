@@ -1,57 +1,46 @@
-package com.example.myapplication.model
+package com.example.myapplication.entities
 
-import android.os.Parcel
-import android.os.Parcelable
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
+import com.example.myapplication.converters.ActorArrayConverter
 
-data class MovieDto(
+@Entity
+data class Movie(
+
+	@PrimaryKey(autoGenerate = true)
 	val id: Int,
+
+	@ColumnInfo(name = "image_url")
 	val imageUrl: String?,
+
 	val title: String?,
+
 	val description: String?,
+
+	@ColumnInfo(name = "full_description")
 	val fullDescription: String?,
+
+	@ColumnInfo(name = "rate_score")
 	val rateScore: Int,
+
+	@ColumnInfo(name = "age_restriction")
 	val ageRestriction: Int,
+
 	val genre: String?,
+
 	val release: String?,
-	val actors: Array<ActorDto>
 
-): Parcelable {
-	constructor(parcel: Parcel) : this(
-		parcel.readInt(),
-		parcel.readString(),
-		parcel.readString(),
-		parcel.readString(),
-		parcel.readString(),
-		parcel.readInt(),
-		parcel.readInt(),
-		parcel.readString(),
-		parcel.readString(),
-		parcel.readArray(ActorDto::class.java.classLoader) as Array<ActorDto>
-	)
+	@TypeConverters(ActorArrayConverter::class)
+	val actors: Array<Actor>
 
-	override fun describeContents(): Int {
-		return 0
-	}
-
-	override fun writeToParcel(dest: Parcel?, flags: Int) {
-		dest?.writeInt(id)
-		dest?.writeString(imageUrl)
-		dest?.writeString(title)
-		dest?.writeString(description)
-		dest?.writeString(fullDescription)
-		dest?.writeInt(rateScore)
-		dest?.writeInt(ageRestriction)
-		dest?.writeString(genre)
-		dest?.writeString(release)
-		dest?.writeArray(actors)
-
-	}
-
+) {
 	override fun equals(other: Any?): Boolean {
 		if (this === other) return true
 		if (javaClass != other?.javaClass) return false
 
-		other as MovieDto
+		other as Movie
 
 		if (id != other.id) return false
 		if (imageUrl != other.imageUrl) return false
@@ -79,15 +68,5 @@ data class MovieDto(
 		result = 31 * result + (release?.hashCode() ?: 0)
 		result = 31 * result + actors.contentHashCode()
 		return result
-	}
-
-	companion object CREATOR : Parcelable.Creator<MovieDto> {
-		override fun createFromParcel(parcel: Parcel): MovieDto {
-			return MovieDto(parcel)
-		}
-
-		override fun newArray(size: Int): Array<MovieDto?> {
-			return arrayOfNulls(size)
-		}
 	}
 }

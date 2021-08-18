@@ -19,14 +19,14 @@ import com.example.myapplication.*
 import com.example.myapplication.adapters.GenresAdapter
 import com.example.myapplication.adapters.MovieItemDecoration
 import com.example.myapplication.adapters.MoviesAdapter
-import com.example.myapplication.model.MovieDto
-import com.example.myapplication.viewModel.MoviesListViewModel
+import com.example.myapplication.entities.Movie
+import com.example.myapplication.viewModels.MoviesListViewModel
 import java.lang.AssertionError
 
 class MoviesListFragment : Fragment() {
 
 	private lateinit var viewModel: MoviesListViewModel
-	private lateinit var liveData: LiveData<ArrayList<MovieDto>>
+	private lateinit var liveData: LiveData<ArrayList<Movie>>
 	private lateinit var movieRecycler: RecyclerView
 	private lateinit var listener: MoviesAdapter.OnItemClickListener
 	private lateinit var pullToRefresh: SwipeRefreshLayout
@@ -39,7 +39,7 @@ class MoviesListFragment : Fragment() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		viewModel = ViewModelProvider(this).get(MoviesListViewModel::class.java)
-		viewModel.uploadMovies()
+		activity?.applicationContext?.let { viewModel.uploadMovies(it) }
 	}
 
 	override fun onCreateView(
@@ -50,13 +50,6 @@ class MoviesListFragment : Fragment() {
 		val view: View = inflater.inflate(R.layout.activity_movie_list, container, false)
 		pullToRefresh = view.findViewById(R.id.swipeContainerMovieList)
 
-		if (savedInstanceState != null) {
-			viewModel.setMovies(
-				savedInstanceState.getParcelableArrayList<MovieDto>(
-					resources.getString(R.string.tag_saved_movie_list)
-				) as ArrayList<MovieDto>
-			)
-		}
 		setRecyclers(view)
 		liveData = viewModel.getData()
 		liveData.observe(viewLifecycleOwner, {
@@ -64,14 +57,6 @@ class MoviesListFragment : Fragment() {
 			pullToRefresh.isRefreshing = false
 		})
 		return view
-	}
-
-	override fun onSaveInstanceState(outState: Bundle) {
-		outState.putParcelableArrayList(
-			resources.getString(R.string.tag_saved_movie_list),
-			viewModel.getMovies()
-		)
-		super.onSaveInstanceState(outState)
 	}
 
 	private fun setRecyclers(view: View) {
@@ -101,7 +86,7 @@ class MoviesListFragment : Fragment() {
 		pullToRefresh.isRefreshing = true
 		pullToRefresh.setOnRefreshListener {
 			try {
-				viewModel.updateMovies()
+				activity?.applicationContext?.let { viewModel.updateMovies(it) }
 			} catch (exception: AssertionError) {
 				Log.d(
 					resources.getString(R.string.tag_coroutineException),

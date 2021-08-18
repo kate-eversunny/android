@@ -6,7 +6,7 @@ import com.google.gson.Gson
 
 class ActorArrayConverter {
 
-	val gson = Gson()
+	private val gson = Gson()
 
 	@TypeConverter
 	fun fromActors(actors: Array<Actor>): String {

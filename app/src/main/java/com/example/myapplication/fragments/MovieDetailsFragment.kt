@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
-import com.example.myapplication.model.MovieDto
 import com.example.myapplication.adapters.MovieItemDecoration
 import com.example.myapplication.R
 import com.example.myapplication.adapters.ActorsAdapter
@@ -97,7 +96,7 @@ class MovieDetailsFragment : Fragment() {
 	}
 
 	companion object {
-		fun newInstance(movie: MovieDto): MovieDetailsFragment {
+		fun newInstance(movie: Movie): MovieDetailsFragment {
 			val args = Bundle()
 			val fragment = MovieDetailsFragment()
 			args.putInt(TAG_MOVIE, movie.id)

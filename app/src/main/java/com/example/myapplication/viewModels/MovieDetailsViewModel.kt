@@ -5,10 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.entities.Movie
-import com.example.myapplication.model.MovieDto
-import com.example.myapplication.model.MovieListLiveData
 import com.example.myapplication.model.MovieLiveData
-import com.example.myapplication.model.MoviesModel
 import com.example.myapplication.repositories.MovieRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
